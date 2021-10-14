@@ -1,11 +1,11 @@
-Установка Cassandra 3.x на Ubuntu
+РЈСЃС‚Р°РЅРѕРІРєР° Cassandra 3.x РЅР° Ubuntu
 =================================
 
-[Статья 1](http://wiki.apache.org/cassandra/DebianPackaging)
-[Статья 2](https://phoenixnap.com/kb/install-cassandra-on-ubuntu)
+- [РЎС‚Р°С‚СЊСЏ 1](http://wiki.apache.org/cassandra/DebianPackaging)
+- [РЎС‚Р°С‚СЊСЏ 2](https://phoenixnap.com/kb/install-cassandra-on-ubuntu)
 
 
-Пошаговая инструкция
+РџРѕС€Р°РіРѕРІР°СЏ РёРЅСЃС‚СЂСѓРєС†РёСЏ
 ====================
 
 Install Java OpenJDK
@@ -99,13 +99,13 @@ To start Cassandra automatically after booting up, use the following command:
 
 Now, if your system reboots, the Cassandra service is enabled automatically.
 
-Конфиг: `/etc/cassandra/cassandra.yaml`
-Базы данных: `/var/lib/cassandra/data`
-Логи: `/var/log/cassandra`
+РљРѕРЅС„РёРі: `/etc/cassandra/cassandra.yaml`
+Р‘Р°Р·С‹ РґР°РЅРЅС‹С…: `/var/lib/cassandra/data`
+Р›РѕРіРё: `/var/log/cassandra`
 
 
 
-Настройки конфига
+РќР°СЃС‚СЂРѕР№РєРё РєРѕРЅС„РёРіР°
 -----------------
 
     listen_address: 91.211.88.229 # localhost
@@ -114,5 +114,5 @@ Now, if your system reboots, the Cassandra service is enabled automatically.
     auto_snapshot: false          # true 
     incremental_backups: false    # false
 
-    # для создания кластера
+    # РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РєР»Р°СЃС‚РµСЂР°
     endpoint_snitch: GossipingPropertyFileSnitch # SimpleSnitch
