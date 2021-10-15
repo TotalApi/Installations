@@ -12,7 +12,7 @@
 
 3. Сервис работы с телематическими данными **TotalApi**
    - Распаковать содержимое [архива](https://github.com/TotalApi/Installations/raw/main/Redist/totalapi-latest.zip) в любую папку;
-   - Скопировать образцы [конфигурационных файлов](https://github.com/TotalApi/Installations/raw/main/Configs/Default/TotalApi) в папку TotalApi;
+   - Скопировать образцы [конфигурационных файлов](https://github.com/TotalApi/Installations/raw/main/Configs/Default/TotalApi) в папку **TotalApi**;
    - Настроить сервис в [конфигурационном файле](Configs/TotalApi_Config.md);
    - Настроить [модули приёма координат](Configs/TotalApi_DevicePlugins.md);
    - Установить сервис как службу Windows, выполнив команду в командной строке `TotalApi.Server.Host.exe i`  с правами администратора.
