@@ -15,14 +15,14 @@
    - Скопировать образцы [конфигурационных файлов](https://github.com/TotalApi/Installations/raw/main/Configs/Default/TotalApi) в папку **TotalApi**;
    - Настроить сервис в [конфигурационном файле](Configs/TotalApi_Config.md);
    - Настроить [модули приёма координат](Configs/TotalApi_DevicePlugins.md);
-   - Установить сервис как службу Windows, выполнив команду в командной строке `TotalApi.Server.Host.exe i`  с правами администратора.
+   - Установить сервис как службу Windows, выполнив команду в командной строке `TotalApi.Server.Host.exe /i`  с правами администратора.
 
 4. База данных для Web-приложения **Metrix**
  
 5. Web-приложение **Metrix**
    - Установить на сервере IIS (при установке обязательно выбрать опцию поддержки Web-socket);
    - Распаковать содержимое [архива](https://github.com/TotalApi/Installations/raw/main/Redist/MetrixWeb-latest.zip) в любую папку;
-   - Скопировать образцы [конфигурационных файлов](https://github.com/TotalApi/Installations/raw/main/Configs/Default/Metrix) в папку **Metrix**;
+   - Скопировать образцы [конфигурационных файлов](https://github.com/TotalApi/Installations/raw/main/Configs/Default/MetriX) в папку **Metrix**;
    - Настроить сервис в [конфигурационном файле](Configs/Metrix_Config.md);
    - Создать в IIS Web-приложение, указав папку **Metrix** в качестве корневой; 
 
