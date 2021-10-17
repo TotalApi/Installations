@@ -18,9 +18,11 @@
    - Установить сервис как службу Windows, выполнив команду в командной строке `TotalApi.Server.Host.exe /i`  с правами администратора.
 
 4. База данных для Web-приложения **Metrix**
+   - установить БД MS SQL Server 2012 R2 x64 или выше. (Использование других редакций теоретически возможно, но не проверялось);
+   - (опционально) установить [SQL Server Management Studio](https://aka.ms/ssmsfullsetup).
  
 5. Web-приложение **Metrix**
-   - Установить на сервере IIS (при установке обязательно выбрать опцию поддержки Web-socket);
+   - Установить на сервере IIS 7+ (при установке обязательно выбрать опцию поддержки Web-socket);
    - Распаковать содержимое [архива](https://github.com/TotalApi/Installations/raw/main/Redist/MetrixWeb-latest.zip) в любую папку;
    - Скопировать образцы [конфигурационных файлов](https://github.com/TotalApi/Installations/raw/main/Configs/Default/MetriX) в папку **Metrix**;
    - Настроить сервис в [конфигурационном файле](Configs/Metrix_Config.md);

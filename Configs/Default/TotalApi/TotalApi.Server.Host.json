@@ -11,11 +11,14 @@
         "HttpPort": 0
     },
 
+
+    // Параметры подключения к телематической БД 
     "ConnectionStrings": {
         "Cassandra.TelematicsDb": "Contact Points=[host];Default Keyspace=TelematicsPoolSize=500;RetryReadCount=5;WriteDataThreads=100;QueryTimeoutMs=10000",
     },
 
 
+    // Параметры протоколирования
     "totalapi.log": {
 //        "disabled": true,
         "async": false,
