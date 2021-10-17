@@ -108,11 +108,11 @@ Now, if your system reboots, the Cassandra service is enabled automatically.
 Настройки конфига
 -----------------
 
-    listen_address: 91.211.88.229 # localhost
-    rpc_address: 91.211.88.229    # localhost
-    file_cache_size_in_mb: 2048   # 512.
-    auto_snapshot: false          # true 
-    incremental_backups: false    # false
+    listen_address: xxx.xxx.xxx.xxx # localhost
+    rpc_address: xxx.xxx.xxx.xxx    # localhost
+    file_cache_size_in_mb: 2048     # 512.
+    auto_snapshot: false            # true 
+    incremental_backups: false      # false
 
     # для создания кластера
     endpoint_snitch: GossipingPropertyFileSnitch # SimpleSnitch

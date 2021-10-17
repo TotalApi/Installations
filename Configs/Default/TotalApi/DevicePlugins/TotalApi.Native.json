@@ -1,0 +1,7 @@
+{
+    "Disabled": true,
+    "HttpPort": 8081,
+    //"HttpHost": "http://192.168.1.54:{port}",
+    "TcpPort": 18081, 
+    "NamedPipeName": "$totalapi"
+}
