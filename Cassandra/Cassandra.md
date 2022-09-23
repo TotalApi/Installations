@@ -99,9 +99,10 @@ To start Cassandra automatically after booting up, use the following command:
 
 Now, if your system reboots, the Cassandra service is enabled automatically.
 
-Конфиг: `/etc/cassandra/cassandra.yaml`
-Базы данных: `/var/lib/cassandra/data`
-Логи: `/var/log/cassandra`
+
+- Конфиг: `/etc/cassandra/cassandra.yaml`
+- Базы данных: `/var/lib/cassandra/data`
+- Логи: `/var/log/cassandra`
 
 
 
