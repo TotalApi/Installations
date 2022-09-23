@@ -24,3 +24,10 @@
  
 - [Remote Debugger](https://github.com/TotalApi/Installations/raw/main/Redist/Tools/Remote Debugger.zip) 
 
+
+
+Текущие версии сборок
+=====================
+
+`MetrixWeb-1.23.454.32025`
+`totalapi-10.0.14.210`
