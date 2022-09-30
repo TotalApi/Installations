@@ -96,4 +96,14 @@ Since Samba doesn’t use the system account password, we need to set up a Samba
 
 **Note: Username used must belong to a system account, else it won’t save.**
 
+
+Enable access from Windows
+--------------------------
+
+- Open the Local Group Policy Editor (`gpedit. msc`).
+- In the console tree, select `Computer Configuration` > `Administrative Templates` > `Network` > `Lanman Workstation`.
+- For the setting, right-click `Enable insecure guest logons` and select Edit.
+- Select `Enabled` and select OK.
+
+
 [SambaServer Guide](https://help.ubuntu.com/community/Samba/SambaServerGuide)
