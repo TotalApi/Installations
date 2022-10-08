@@ -3,4 +3,5 @@
 
 - [Samba](Samba.md)
 - [Fail2Ban](Fail2Ban.md)
+- [Дополнительные настройки](UbuntuIssues.md)
 
