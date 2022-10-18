@@ -38,37 +38,45 @@ The command above creates a new folder `sambashare` in our home directory which 
         security = user             
         map to guest = bad user     
         wins support = no           
-        dns proxy = no              
+        dns proxy = no
 
-    [sambashare]
-	    comment = Samba on Ubuntu
-	    path = /home/username/sambashare
+
+    [public]
+	    comment = Public on Ubuntu
+	    path = /samba/public
+        guest ok = yes
+        browsable = yes
+        writable = yes
 	    read only = no
-	    browsable = yes
+
+    [public]
+	    comment = Private on Ubuntu
+	    path = /samba/private
+        guest ok = no
+        browsable = yes
+        writable = yes
+	    read only = no
 
     [cassandra_data]
         path = /var/lib/cassandra
-        guest ok = yes
-        force user = nobody
+        guest ok = no
         browsable = yes
         writable = yes
-        directory mask = 0777
+	    read only = no
 
     [cassandra_configs]
         path = /etc/cassandra
-        guest ok = yes
-        force user = nobody
+        guest ok = no
         browsable = yes
         writable = yes
-        directory mask = 0777
+	    read only = no
 
     [cassandra_logs]
         path = /var/log/cassandra
-        guest ok = yes
-        force user = nobody
+        guest ok = no
         browsable = yes
         writable = yes
-        directory mask = 0777
+	    read only = no
 
 
 
