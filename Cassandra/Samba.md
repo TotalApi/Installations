@@ -49,7 +49,7 @@ The command above creates a new folder `sambashare` in our home directory which 
         writable = yes
 	    read only = no
 
-    [public]
+    [private]
 	    comment = Private on Ubuntu
 	    path = /samba/private
         guest ok = no
@@ -108,7 +108,7 @@ Since Samba doesn’t use the system account password, we need to set up a Samba
 Enable access from Windows
 --------------------------
 
-- Open the Local Group Policy Editor (`gpedit. msc`).
+- Open the Local Group Policy Editor (`gpedit.msc`).
 - In the console tree, select `Computer Configuration` > `Administrative Templates` > `Network` > `Lanman Workstation`.
 - For the setting, right-click `Enable insecure guest logons` and select Edit.
 - Select `Enabled` and select OK.
