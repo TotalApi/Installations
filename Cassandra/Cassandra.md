@@ -186,6 +186,7 @@ Add these settings to `/etc/sysctl.conf` (or `/etc/sysctl.d/filename.conf`):
     net.core.optmem_max = 40960
     net.ipv4.tcp_rmem = 4096 87380 16777216
     net.ipv4.tcp_wmem = 4096 65536 16777216
+    vm.max_map_count = 1048575
 
 To set immediately (depending on your distribution):
     
