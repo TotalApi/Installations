@@ -115,8 +115,8 @@ Now, if your system reboots, the Cassandra service is enabled automatically.
 
 
 
-Настройки конфига
------------------
+(Настройки конфига)[cassandra.yaml]
+-----------------------------------
 
     listen_address: xxx.xxx.xxx.xxx # localhost
     rpc_address: xxx.xxx.xxx.xxx    # localhost
