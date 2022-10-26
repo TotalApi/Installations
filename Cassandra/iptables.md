@@ -30,7 +30,7 @@
 Сохранение правил
 -----------------
 
-    apt-get install iptables-persistent
+    iptables-save > /etc/iptables/rules.v4
 
 
 Создание правил
