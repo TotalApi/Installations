@@ -24,6 +24,7 @@
  
 5. Web-приложение **Metrix**
    - Установить на сервере IIS 7+ (при установке обязательно выбрать опцию поддержки Web-socket);
+   - Для автоматического старта приложения выполнить рекомендации, описанные [здесь](https://www.taithienbo.com/how-to-auto-start-and-keep-an-asp-net-core-web-application-and-keep-it-running-on-iis/) и [здесь](https://docs.hangfire.io/en/latest/deployment-to-production/making-aspnet-app-always-running.html);
    - Распаковать содержимое [архива](https://github.com/TotalApi/Installations/raw/main/Redist/MetrixWeb-latest.zip) в любую папку;
    - Скопировать образцы [конфигурационных файлов](https://github.com/TotalApi/Installations/raw/main/Configs/Default/MetriX) в папку **Metrix**;
    - Настроить сервис в [конфигурационном файле](Configs/Metrix_Config.md);
