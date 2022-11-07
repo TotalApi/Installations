@@ -36,9 +36,17 @@
 Создание правил
 ---------------
 
-	sudo ufw allow from 217.147.172.57   # "metrix local server"
-	sudo ufw allow from 85.198.142.206   # "metrix vpn server"
-	sudo ufw allow from 213.194.126.135  # "home computer"
+	sudo ufw allow from 217.147.172.57  comment 'metrix local server'
+
+    sudo ufw allow from 217.147.172.200 comment 'metrix test server'
+	sudo ufw allow from 85.198.142.206  comment 'metrix vpn server'
+	sudo ufw allow from 213.194.126.135 comment 'home computer'
+
+	sudo ufw allow proto tcp from any to any port 8086 comment 'Allow infixdDB http access'
+    sudo ufw allow proto udp from any to any port 4444  comment 'Allow infixdDB udp access'
+
+	sudo ufw allow 8086 comment 'Allow infixdDB http/udp access'
+	sudo ufw allow 4444 comment 'Allow infixdDB http/udp access'
 
     
 Вставка правил перед указанным
