@@ -25,6 +25,6 @@ FAR на Linux
 
 Создание ярлыка `far` для быстрого запуска
 
-	printf '#!/bin/bash\nfar2l --mortal\n' | sudo tee /bin/far; sudo chmod ugo+x /bin/far 
+    printf '#!/bin/bash\nfar2l --mortal\n' | sudo tee /bin/far; sudo chmod ugo+x /bin/far 
 
 
