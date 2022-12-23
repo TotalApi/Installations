@@ -7,10 +7,7 @@ FAR на Linux
 Установка
 ---------
 
-    sudo add-apt-repository ppa:far2l-team/ppa
-    sudo apt update
-
-    sudo apt-get install far2l
+    sudo add-apt-repository ppa:far2l-team/ppa; sudo apt update; sudo apt-get install far2l
 
 Запуск
 ------
