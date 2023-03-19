@@ -5,6 +5,7 @@
 - [Samba](Samba.md)
 - [Настройка фаервола iptables](iptables.md)
 - [Настройка фаервола UFW](ufw.md)
+- [Настройка Redis](redis.md)
 - [Fail2Ban](Fail2Ban.md)
 - [Дополнительные настройки](UbuntuIssues.md)
 
