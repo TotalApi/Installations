@@ -1,8 +1,9 @@
 Установка Cassandra 3.x на Ubuntu
 =================================
 
-- [Статья 1](http://wiki.apache.org/cassandra/DebianPackaging)
-- [Статья 2](https://phoenixnap.com/kb/install-cassandra-on-ubuntu)
+- [Статья 1](https://cassandra.apache.org/_/download.html)
+- [Статья 2](http://wiki.apache.org/cassandra/DebianPackaging)
+- [Статья 3](https://phoenixnap.com/kb/install-cassandra-on-ubuntu)
 
 
 Пошаговая инструкция
@@ -43,20 +44,19 @@ Enter this command:
 
 Add Apache Cassandra Repository and Import GPG Key
 --------------------------------------------------
-You need to add the Apache Cassandra repository and pull the GPG key before installing the database.
-Enter the command below to add the Cassandra repository to the sources list:
+For the `<release series>` specify the major version number, without dot, and with an appended x.
 
-    sudo sh -c 'echo "deb http://www.apache.org/dist/cassandra/debian 311x main" > /etc/apt/sources.list.d/cassandra.list'
+The latest `<release series>` is `41x`.
 
-The output returns to a new line with no message.
+For older releases, the `<release series>` can be one of `40x`, `311x`, `30x`, or `22x`.
 
-Then, use the wget command to pull the public key from the URL below:
+Add the Apache repository of Cassandra to `/etc/apt/sources.list.d/cassandra.sources.list`, for example for the latest `3.11`
 
-    sudo apt install -y gnupg2
-    wget -q -O - https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
+    echo "deb https://debian.cassandra.apache.org 311x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
 
-If you entered the command and the URL correctly, the output prints OK.
+Add the Apache Cassandra repository keys:
 
+    curl https://downloads.apache.org/cassandra/KEYS | sudo apt-key add -
 
 
 Install Apache Cassandra
@@ -67,10 +67,21 @@ Update the repository package list:
 
     sudo apt update
 
+If you encounter this error:
+
+    GPG error: http://www.apache.org 311x InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY A278B781FE4B2BDA
+
+Then add the public key `A278B781FE4B2BDA` as follows:
+
+    sudo apt-key adv --keyserver pool.sks-keyservers.net --recv-key A278B781FE4B2BDA
+
+and repeat `sudo apt-get update`. The actual key may be different, you get it from the error message itself. 
+
+For a full list of Apache contributors public keys, you can refer to `Cassandra KEYS`.
+
 Then, run the install command:
 
     sudo apt install cassandra
-
 
 
 Verify Apache Cassandra Installation
