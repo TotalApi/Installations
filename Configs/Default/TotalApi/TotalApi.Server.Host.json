@@ -3,8 +3,8 @@
     "serviceHost": "http://localhost:1202", 
 
     // идентификатор службы Windows
-    "appId": "!TotalApi.DSNS",
-    "appTitle": "TotalApi DSNS Server",
+    "appId": "!TotalApi.XXX",
+    "appTitle": "TotalApi XXX Server",
 
     // укажите порт, если используется мониторинг состояния
     "AppMonitorServer": {
@@ -14,7 +14,7 @@
 
     // Параметры подключения к телематической БД 
     "ConnectionStrings": {
-        "Cassandra.TelematicsDb": "Contact Points=[host];Default Keyspace=TelematicsPoolSize=500;RetryReadCount=5;WriteDataThreads=100;QueryTimeoutMs=10000",
+        "Cassandra.TelematicsDb": "Contact Points=[host];Default Keyspace=telematics;PoolSize=500;RetryReadCount=5;WriteDataThreads=100;QueryTimeoutMs=10000",
     },
 
 
