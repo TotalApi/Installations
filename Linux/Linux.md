@@ -7,5 +7,6 @@
 - [Настройка фаервола UFW](ufw.md)
 - [Настройка Redis](redis.md)
 - [Fail2Ban](Fail2Ban.md)
+- [MQTT Mosquitto](MQTT-Mosquitto.md)
 - [Дополнительные настройки](UbuntuIssues.md)
 
