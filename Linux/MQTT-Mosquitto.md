@@ -74,12 +74,13 @@ You will be prompted to enter an email address and agree to the terms of service
 After doing so, you should see a message telling you the process was successful and where your certificates are stored.
 Be sure to substitute your server’s domain name here:
 
-    sudo certbot certonly --standalone --preferred-challenges http -d cassandra.test.totalapi.io
+    sudo certbot certonly --standalone --preferred-challenges http -d mqtt.totalapi.io
 
-Дать права на папки сертификатов
+Дать права на файлы сертификатов
 
-    chmod 755 /etc/letsencrypt/archive
-    chmod 755 /etc/letsencrypt/live
+    sudo chmod -R 644 /etc/letsencrypt/archive
+    sudo chmod -R 644 /etc/letsencrypt/live
+
 
 Сконфигурировать различные эндпоинты подключения к брокеру в файле `/etc/mosquitto/conf.d/default.conf`
 
@@ -87,13 +88,16 @@ Be sure to substitute your server’s domain name here:
     password_file /etc/mosquitto/passwd
 
     # mqtt://
+    listener 1883
+
+    # mqtt://
     listener 9991
 
     # mqtts://
     listener 9992
-    certfile /etc/letsencrypt/live/cassandra.test.totalapi.io/cert.pem
-    cafile /etc/letsencrypt/live/cassandra.test.totalapi.io/chain.pem
-    keyfile /etc/letsencrypt/live/cassandra.test.totalapi.io/privkey.pem
+    certfile /etc/letsencrypt/live/mqtt.totalapi.io/cert.pem
+    cafile /etc/letsencrypt/live/mqtt.totalapi.io/chain.pem
+    keyfile /etc/letsencrypt/live/mqtt.totalapi.io/privkey.pem
 
     # ws://
     listener 9993
@@ -102,12 +106,13 @@ Be sure to substitute your server’s domain name here:
     # wss://
     listener 9994
     protocol websockets
-    certfile /etc/letsencrypt/live/cassandra.test.totalapi.io/cert.pem
-    cafile /etc/letsencrypt/live/cassandra.test.totalapi.io/chain.pem
-    keyfile /etc/letsencrypt/live/cassandra.test.totalapi.io/privkey.pem
+    certfile /etc/letsencrypt/live/mqtt.totalapi.io/cert.pem
+    cafile /etc/letsencrypt/live/mqtt.totalapi.io/chain.pem
+    keyfile /etc/letsencrypt/live/mqtt.totalapi.io/privkey.pem
 
 Открыть порты в фаерволе
 
+    sudo ufw allow 1883
     sudo ufw allow 9991
     sudo ufw allow 9992
     sudo ufw allow 9993
@@ -119,10 +124,10 @@ Configuring Certbot Renewals
 `Certbot` will automatically renew our SSL certificates before they expire, but it needs to be told 
 to restart the `Mosquitto` service after doing so.
 
-Open the Certbot renewal configuration file for your domain name `/etc/letsencrypt/renewal/cassandra.test.totalapi.io.conf`.
+Open the Certbot renewal configuration file for your domain name `/etc/letsencrypt/renewal/mqtt.totalapi.io.conf`.
 Add the following `renew_hook` option on the last line of the file :
 	
-	renew_hook = systemctl restart mosquitto
+	renew_hook = chmod -R 644 /etc/letsencrypt/archive & chmod -R 644 /etc/letsencrypt/live & systemctl restart mosquitto
 
 Save and close the file, then run a `Certbot` dry run to make sure the syntax is ok:
 
