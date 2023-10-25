@@ -76,10 +76,9 @@ Be sure to substitute your server’s domain name here:
 
     sudo certbot certonly --standalone --preferred-challenges http -d mqtt.totalapi.io
 
-Дать права на файлы сертификатов
+Дать права на каталоги и файлы сертификатов
 
-    sudo chmod -R 644 /etc/letsencrypt/archive
-    sudo chmod -R 644 /etc/letsencrypt/live
+    sudo chmod -R 755 /etc/letsencrypt/{archive,live}
 
 
 Сконфигурировать различные эндпоинты подключения к брокеру в файле `/etc/mosquitto/conf.d/default.conf`
