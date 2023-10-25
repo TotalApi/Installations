@@ -1,65 +1,65 @@
-Установка брокера Mosquitto
+РЈСЃС‚Р°РЅРѕРІРєР° Р±СЂРѕРєРµСЂР° Mosquitto
 ===========================
-- [Статья 1](https://codedevice.ru/posts/ubuntu-mosquitto-install)
-- [Статья 2](https://dzen.ru/a/YEiOMAECa0UEAXeH)
-- [Статья 3](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-the-mosquitto-mqtt-messaging-broker-on-ubuntu-18-04-quickstart)
+- [РЎС‚Р°С‚СЊСЏ 1](https://codedevice.ru/posts/ubuntu-mosquitto-install)
+- [РЎС‚Р°С‚СЊСЏ 2](https://dzen.ru/a/YEiOMAECa0UEAXeH)
+- [РЎС‚Р°С‚СЊСЏ 3](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-the-mosquitto-mqtt-messaging-broker-on-ubuntu-18-04-quickstart)
 
-Добавляем репозиторий mosquitto
+Р”РѕР±Р°РІР»СЏРµРј СЂРµРїРѕР·РёС‚РѕСЂРёР№ mosquitto
 
 	sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
 
-Обновляем список пакетов
+РћР±РЅРѕРІР»СЏРµРј СЃРїРёСЃРѕРє РїР°РєРµС‚РѕРІ
 
 	sudo apt-get update
 
-Устанавливаем Mosquitto
+РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Mosquitto
 
 	sudo apt install mosquitto mosquitto-clients
 
-Проверяем запущена служба брокера
+РџСЂРѕРІРµСЂСЏРµРј Р·Р°РїСѓС‰РµРЅР° СЃР»СѓР¶Р±Р° Р±СЂРѕРєРµСЂР°
 
 	sudo service mosquitto status
 
-Настройка пароля MQTT
+РќР°СЃС‚СЂРѕР№РєР° РїР°СЂРѕР»СЏ MQTT
 
-Для доступа по логину и паролю выполним команду (см.ниже) которая создаст файл passwd в каталоге 
-`/etc/mosquitto/` и сгенерирует в нем пароль для пользователя `codedevice`.
+Р”Р»СЏ РґРѕСЃС‚СѓРїР° РїРѕ Р»РѕРіРёРЅСѓ Рё РїР°СЂРѕР»СЋ РІС‹РїРѕР»РЅРёРј РєРѕРјР°РЅРґСѓ (СЃРј.РЅРёР¶Рµ) РєРѕС‚РѕСЂР°СЏ СЃРѕР·РґР°СЃС‚ С„Р°Р№Р» passwd РІ РєР°С‚Р°Р»РѕРіРµ 
+`/etc/mosquitto/` Рё СЃРіРµРЅРµСЂРёСЂСѓРµС‚ РІ РЅРµРј РїР°СЂРѕР»СЊ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ `codedevice`.
 
 	sudo mosquitto_passwd -c /etc/mosquitto/passwd codedevice
 
-Добавим нового пользователя с логином `mqtt` и паролем `mqtt`:
+Р”РѕР±Р°РІРёРј РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ Р»РѕРіРёРЅРѕРј `mqtt` Рё РїР°СЂРѕР»РµРј `mqtt`:
 
     mosquitto_passwd -b /etc/mosquitto/passwd mqtt mqtt
 
-Создаем свой конфигурационный файл
+РЎРѕР·РґР°РµРј СЃРІРѕР№ РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р»
 
 	sudo nano /etc/mosquitto/conf.d/default.conf
 
-Основной файл mosquitto конфигурации находится `/etc/mosquitto/mosquitto.conf`
-Скопируем в него настройки, где повесим слушателя на порт `1883`, запретим анонимный вход 
-и укажет путь к файлу паролей который мы создали ранее.
+РћСЃРЅРѕРІРЅРѕР№ С„Р°Р№Р» mosquitto РєРѕРЅС„РёРіСѓСЂР°С†РёРё РЅР°С…РѕРґРёС‚СЃСЏ `/etc/mosquitto/mosquitto.conf`
+РЎРєРѕРїРёСЂСѓРµРј РІ РЅРµРіРѕ РЅР°СЃС‚СЂРѕР№РєРё, РіРґРµ РїРѕРІРµСЃРёРј СЃР»СѓС€Р°С‚РµР»СЏ РЅР° РїРѕСЂС‚ `1883`, Р·Р°РїСЂРµС‚РёРј Р°РЅРѕРЅРёРјРЅС‹Р№ РІС…РѕРґ 
+Рё СѓРєР°Р¶РµС‚ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ РїР°СЂРѕР»РµР№ РєРѕС‚РѕСЂС‹Р№ РјС‹ СЃРѕР·РґР°Р»Рё СЂР°РЅРµРµ.
 
 	listener 1883
 	allow_anonymous false
 	password_file /etc/mosquitto/passwd
 
-Открыть порт в фаерволе
+РћС‚РєСЂС‹С‚СЊ РїРѕСЂС‚ РІ С„Р°РµСЂРІРѕР»Рµ
 
     sudo ufw allow 1883
 
-Перезапускаем `mosquitto` командой
+РџРµСЂРµР·Р°РїСѓСЃРєР°РµРј `mosquitto` РєРѕРјР°РЅРґРѕР№
 
 	sudo service mosquitto restart
 
 
-Поддержка SSL c использованием Let's Encrypt
+РџРѕРґРґРµСЂР¶РєР° SSL c РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј Let's Encrypt
 --------------------------------------------
 
-First we will install a custom software repository to get the latest version of `Certbot`, the Let’s Encrypt client:
+First we will install a custom software repository to get the latest version of `Certbot`, the LetвЂ™s Encrypt client:
 
     sudo add-apt-repository ppa:certbot/certbot
 
-Установка `Certbot`
+РЈСЃС‚Р°РЅРѕРІРєР° `Certbot`
 
     sudo apt install certbot
 
@@ -72,16 +72,16 @@ Open up port 80 in your firewall:
 Then run Certbot to fetch the certificate.
 You will be prompted to enter an email address and agree to the terms of service. 
 After doing so, you should see a message telling you the process was successful and where your certificates are stored.
-Be sure to substitute your server’s domain name here:
+Be sure to substitute your serverвЂ™s domain name here:
 
     sudo certbot certonly --standalone --preferred-challenges http -d cassandra.test.totalapi.io
 
-Дать права на папки сертификатов
+Р”Р°С‚СЊ РїСЂР°РІР° РЅР° РїР°РїРєРё СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ
 
     chmod 755 /etc/letsencrypt/archive
     chmod 755 /etc/letsencrypt/live
 
-Сконфигурировать различные эндпоинты подключения к брокеру в файле `/etc/mosquitto/conf.d/default.conf`
+РЎРєРѕРЅС„РёРіСѓСЂРёСЂРѕРІР°С‚СЊ СЂР°Р·Р»РёС‡РЅС‹Рµ СЌРЅРґРїРѕРёРЅС‚С‹ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє Р±СЂРѕРєРµСЂСѓ РІ С„Р°Р№Р»Рµ `/etc/mosquitto/conf.d/default.conf`
 
     allow_anonymous false
     password_file /etc/mosquitto/passwd
@@ -106,7 +106,7 @@ Be sure to substitute your server’s domain name here:
     cafile /etc/letsencrypt/live/cassandra.test.totalapi.io/chain.pem
     keyfile /etc/letsencrypt/live/cassandra.test.totalapi.io/privkey.pem
 
-Открыть порты в фаерволе
+РћС‚РєСЂС‹С‚СЊ РїРѕСЂС‚С‹ РІ С„Р°РµСЂРІРѕР»Рµ
 
     sudo ufw allow 9991
     sudo ufw allow 9992
@@ -128,4 +128,4 @@ Save and close the file, then run a `Certbot` dry run to make sure the syntax is
 
 	sudo certbot renew --dry-run
 
-If you see no errors, you’re all set. Let’s test our MQTT server next.	
+If you see no errors, youвЂ™re all set. LetвЂ™s test our MQTT server next.	
