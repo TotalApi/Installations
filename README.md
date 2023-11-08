@@ -1,4 +1,4 @@
-[Инструкция по установке программного комплекса Metrix](https://github.com/TotalApi/Installations//blob/main/README.md) 
+[Инструкция по установке программного комплекса Metrix](https://github.com/TotalApi/Installations/blob/main/README.md) 
 =======================================================================================================================
 
 
