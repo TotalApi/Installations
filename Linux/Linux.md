@@ -8,5 +8,6 @@
 - [Настройка Redis](redis.md)
 - [Fail2Ban](Fail2Ban.md)
 - [MQTT Mosquitto](MQTT-Mosquitto.md)
+- [InfluxDb](InfluxDb.md)
 - [Дополнительные настройки](UbuntuIssues.md)
 

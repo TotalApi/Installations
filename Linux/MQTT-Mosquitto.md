@@ -133,3 +133,11 @@ Save and close the file, then run a `Certbot` dry run to make sure the syntax is
 	sudo certbot renew --dry-run
 
 If you see no errors, you’re all set. Let’s test our MQTT server next.	
+
+Очистка RETAIN-сообщений
+    
+    mosquitto_sub -h HOST -t 'TOPIC' --remove-retained --retained-only -u USER -P PASSWORD
+
+Пример очистки всех RETAIN-сообщений на локальном сервере
+
+    mosquitto_sub -t '#' --remove-retained --retained-only -u mqtt -P mqtt
