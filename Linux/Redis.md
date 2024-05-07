@@ -36,6 +36,8 @@
     redis-cli 
     127.0.0.1:6379> CONFIG SET protected-mode no
     OK
+    127.0.0.1:6379> CONFIG REWRITE
+    OK
 
 [Подключение slave-ноды к основному узлу](https://mohewedy.medium.com/redis-cluster-configurations-by-example-5480a178e884)
 ---------------------------------------------------------------------------------------------------------------------------
