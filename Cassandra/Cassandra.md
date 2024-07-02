@@ -107,14 +107,10 @@ The output should display active (running) in green.
 Commands to Start, Stop, and Restart Cassandra Service
 ------------------------------------------------------
     
-    sudo systemctl start cassandra
-    sudo systemctl stop cassandra
-    sudo systemctl restart cassandra
-or
 	sudo service cassandra start
 	sudo service cassandra stop
 	sudo service cassandra restart
-
+    sudo service cassandra status
 
 
 Start Apache Cassandra Service Automatically on Boot
