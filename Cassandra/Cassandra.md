@@ -69,13 +69,15 @@ Update the repository package list:
 
 If you encounter this error:
 
-    GPG error: http://www.apache.org 311x InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY A278B781FE4B2BDA
+    GPG error: https://apache.jfrog.io/artifactory/cassandra-deb 41x InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 5E85B9AE0B84C041
 
 Then add the public key `A278B781FE4B2BDA` as follows:
 
-    sudo apt-key adv --keyserver pool.sks-keyservers.net --recv-key A278B781FE4B2BDA
+    gpg --keyserver keyserver.ubuntu.com --recv-keys 5E85B9AE0B84C041
+    gpg --export --armor 5E85B9AE0B84C041 | sudo apt-key add - && sudo apt-get update
 
-and repeat `sudo apt-get update`. The actual key may be different, you get it from the error message itself. 
+[Источник](https://askubuntu.com/questions/1484177/the-following-signatures-couldnt-be-verified-because-the-public-key-is-not-avai) 
+The actual key may be different, you get it from the error message itself. 
 
 For a full list of Apache contributors public keys, you can refer to `Cassandra KEYS`.
 
