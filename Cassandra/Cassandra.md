@@ -52,7 +52,7 @@ For older releases, the `<release series>` can be one of `40x`, `311x`, `30x`, o
 
 Add the Apache repository of Cassandra to `/etc/apt/sources.list.d/cassandra.sources.list`, for example for the latest `3.11`
 
-    echo "deb https://debian.cassandra.apache.org 311x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+    echo "deb https://debian.cassandra.apache.org 41x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
 
 Add the Apache Cassandra repository keys:
 
