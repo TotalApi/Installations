@@ -50,7 +50,7 @@ The latest `<release series>` is `41x`.
 
 For older releases, the `<release series>` can be one of `40x`, `311x`, `30x`, or `22x`.
 
-Add the Apache repository of Cassandra to `/etc/apt/sources.list.d/cassandra.sources.list`, for example for the latest `3.11`
+Add the Apache repository of Cassandra to `/etc/apt/sources.list.d/cassandra.sources.list`, for example for the latest `4.1`
 
     echo "deb https://debian.cassandra.apache.org 41x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
 
