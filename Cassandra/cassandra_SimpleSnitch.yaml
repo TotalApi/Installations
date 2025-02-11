@@ -1,0 +1,33 @@
+#
+# Ќастройка конфига Cassandra дл€ бескластерной работы 
+# (или если все сервера кластера наход€тс€ в одной локальной сети)
+#
+
+listen_address: 192.168.xxx.xxx        # ¬нутренний адрес сервера (за NAT - адрес в локальной сети)
+endpoint_snitch: SimpleSnitch
+
+# any class that implements the SeedProvider interface and has a
+# constructor that takes a Map<String, String> of parameters will do.
+seed_provider:
+    # Addresses of hosts that are deemed contact points. 
+    # Cassandra nodes use this list of hosts to find each other and learn
+    # the topology of the ring.  You must change this if you are running
+    # multiple nodes!
+    - class_name: org.apache.cassandra.locator.SimpleSeedProvider
+      parameters:
+          # seeds is actually a comma-delimited list of addresses.
+          # Ex: "<ip1>,<ip2>,<ip3>"
+          - seeds: "192.168.xxx.xxx"
+
+
+
+# Cassandra storage config YAML
+
+# NOTE:
+#   See http://wiki.apache.org/cassandra/StorageConfiguration for
+#   full explanations of configuration directives
+# /NOTE
+
+# The name of the cluster. This is mainly used to prevent machines in
+# one logical cluster from joining another.
+cluster_name: 'TotalApi Cluster'

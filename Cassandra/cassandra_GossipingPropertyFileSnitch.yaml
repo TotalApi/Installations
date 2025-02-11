@@ -1,0 +1,44 @@
+#
+# Настройка конфига Cassandra для кластерной работы если сервера кластера находятся в разных сетях
+#
+# Чтобы перейти с однокластерной работы на многокластерную следует изменить настройки в файле ./cassandra-rackdc.properties 
+# 
+# dc=datacenter1  # было dc1
+# rack=rack1
+#
+# также следует пробросить на маршрутизаторе порты 7000/7001, 9042 
+#
+
+listen_address: 192.168.0.1          # Внутренний адрес сервера (за NAT - адрес в локальной сети)
+broadcast_address: xxx.xxx.xxx.1     # Внешний адрес сервера (перед NAT - адрес маршрутизатора)
+broadcast_rpc_address: xxx.xxx.xxx.1 # Внешний IP-адрес для взаимодействия с клиентами и другими узлами через RPC (Remote Procedure Call). Установите его в публичный IP-адрес, если Cassandra должна быть доступна снаружи.
+rpc_address: 0.0.0.0                 # Адрес, по которому будет доступна ваша Cassandra для клиентских подключений. Используйте 0.0.0.0 для того, чтобы Cassandra слушала все IP-адреса, или настройте на внутренний IP, если нужно.
+
+
+endpoint_snitch: GossipingPropertyFileSnitch
+
+# any class that implements the SeedProvider interface and has a
+# constructor that takes a Map<String, String> of parameters will do.
+seed_provider:
+    # Addresses of hosts that are deemed contact points. 
+    # Cassandra nodes use this list of hosts to find each other and learn
+    # the topology of the ring.  You must change this if you are running
+    # multiple nodes!
+    - class_name: org.apache.cassandra.locator.SimpleSeedProvider
+      parameters:
+          # seeds is actually a comma-delimited list of addresses.
+          # Ex: "<ip1>,<ip2>,<ip3>"
+          - seeds: "xxx.xxx.xxx.1,xxx.xxx.xxx.2,xxx.xxx.xxx.3"
+
+
+
+# Cassandra storage config YAML
+
+# NOTE:
+#   See http://wiki.apache.org/cassandra/StorageConfiguration for
+#   full explanations of configuration directives
+# /NOTE
+
+# The name of the cluster. This is mainly used to prevent machines in
+# one logical cluster from joining another.
+cluster_name: 'TotalApi Cluster'
