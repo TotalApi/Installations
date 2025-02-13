@@ -1,8 +1,8 @@
 #
-# Настройка конфига Cassandra для бескластерной работы 
+# РќР°СЃС‚СЂРѕР№РєР° РєРѕРЅС„РёРіР° Cassandra РґР»СЏ Р±РµСЃРєР»Р°СЃС‚РµСЂРЅРѕР№ СЂР°Р±РѕС‚С‹ 
 #
 
-listen_address: 192.168.xxx.xxx        # Внутренний адрес сервера (за NAT - адрес в локальной сети)
+listen_address: 192.168.xxx.xxx        # Р’РЅСѓС‚СЂРµРЅРЅРёР№ Р°РґСЂРµСЃ СЃРµСЂРІРµСЂР° (Р·Р° NAT - Р°РґСЂРµСЃ РІ Р»РѕРєР°Р»СЊРЅРѕР№ СЃРµС‚Рё)
 endpoint_snitch: SimpleSnitch
 
 # any class that implements the SeedProvider interface and has a
