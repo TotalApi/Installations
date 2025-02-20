@@ -1,23 +1,37 @@
 [Установка Influx 1.x на Ubuntu](https://influxdata.com/downloads/)
 ===================================================================
+[Ссылка 1](https://influxdata.com/downloads/)
+[Ссылка 2](https://medium.com/yavar/install-and-setup-influxdb-on-ubuntu-20-04-22-04-3d6e090ec70c)
 
-Последняя поддерживаемая версия `Influx 1.x` - `1.8.10`
+Последняя поддерживаемая версия `Influx 1.x` - `1.11.8.2`
 
 Debian and Ubuntu users can install the latest stable version of InfluxDB using the apt-get package manager. For Ubuntu users, you can add the InfluxData repository configuration by using the following commands:
 
-    $ curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
-    $ source /etc/lsb-release
-    $ echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+	wget -q https://repos.influxdata.com/influxdata-archive_compat.key
+    echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c influxdata-archive_compat.key' | sha256sum -c && cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null	
+    echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main' | sudo tee /etc/apt/sources.list.d/influxdata.list	
+	
+или прямое скачивание и установка дистрибутива:
+
+    wget https://repos.influxdata.com/debian/packages/influxdb-1.11.8-2-amd64.deb
+    sudo dpkg -i influxdb-1.11.8-2-amd64.deb
+
+Старое:
+    
+	curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+    source /etc/lsb-release
+    echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
 
 
 And then to install and start the InfluxDB service:
 
-    $ sudo apt-get update && sudo apt-get install influxdb
-    $ sudo service influxdb start
+    sudo apt-get update && sudo apt-get install influxdb
+    sudo service influxdb start
 
-По умолчанию админка доступна по на порту `8083`:
+Проверить версию после установки:
 
-    http://influx-host:8083
+    influx -version
+
 
 
 [Фишки InfluxDb](http://docs.influxdata.com)
@@ -25,17 +39,22 @@ And then to install and start the InfluxDB service:
 
 Для доступа к админ консоли нужно подключится к контейнеру (если в Docker'е)
     
-    $ sudo docker exec -i -t influxdb /bin/bash
+    sudo docker exec -i -t influxdb /bin/bash
 
-Создать конфигурационный файл
+Создать конфигурационный файл (если он не существует):
 
-    # influxd config > /etc/influxdb/influxdb.conf
+    influxd config > /etc/influxdb/influxdb.conf
 
 Просмотр протокола:
 
-	$ sudo journalctl -u influxdb.service > influxdb_all.log
-	$ sudo journalctl -u influxdb.service -f  > influxdb_live_tail.log
-	$ sudo journalctl -u influxdb.service -n 100  > influxdb_last_100.log
+	sudo journalctl -u influxdb.service > influxdb_all.log
+	sudo journalctl -u influxdb.service -f  > influxdb_live_tail.log
+	sudo journalctl -u influxdb.service -n 100  > influxdb_last_100.log
+	
+Чтобы сделать автоматический вывод протокола в файл необходимо скопировать файлы из каталога [tools/influxdb] в каталог `/etc/influxdb/tools` 
+и запустить файл:
+
+	sudo install_save_influxdb_logs.sh
 
 
 Включить UDP
@@ -64,7 +83,7 @@ And then to install and start the InfluxDB service:
 
 Для доступа к админ консоли нужно запустить 
     
-    # influx
+    influx
 
 1. Создание новой базы
 
@@ -104,31 +123,35 @@ And then to install and start the InfluxDB service:
 [Установка Chronograf на Ubuntu](https://influxdata.com/downloads/)
 ===================================================================
 
-Последняя поддерживаемая версия `Chronograf` для `Influx 1.x` - `1.10.0`
+Последняя поддерживаемая версия `Chronograf` для `Influx 1.x` - `1.10.6`
 
 `Chronograf` нужен для отображения данных о собранной статистике.
 
 Ubuntu & Debian 64-bit system install instructions
 
-    $ wget https://dl.influxdata.com/chronograf/releases/chronograf_1.10.0_amd64.deb
-    $ sudo dpkg -i chronograf_1.10.0_amd64.deb
+	sudo apt-get install chronograf
+
+или прямое скачивание и установка дистрибутива:
+
+    wget https://dl.influxdata.com/chronograf/releases/chronograf_1.10.6_amd64.deb
+    sudo dpkg -i chronograf_1.10.6_amd64.deb
 
 By default, Chronograf runs on localhost port 8888. Those settings are configurable; see the configuration file to change them and to see the other configuration options. 
 We list the location of the configuration file `/etc/default/chronograf` by installation process below.
 
 	HOST=0.0.0.0
-	PORT=8888
+	PORT=10000
 	LOG_LEVEL=info    
 
 And then start the Chronograf service:
 
-    $ sudo service chronograf start
+    sudo service chronograf restart
 
 Add Chronograf to autorun programs in file `/etc/rc.local`.
 
-По умолчанию вебка доступна на порту `8888`:
+По умолчанию вебка доступна на порту `8888` (или `10000` внесены изменения в файл конфига):
 
-    http://influx-host:8888
+    http://influx-host:10000
 
 
 

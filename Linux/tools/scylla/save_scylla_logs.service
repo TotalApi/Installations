@@ -1,0 +1,9 @@
+[Unit]
+Description=Saving Scylla Logs every second ( need to be copied to /etc/systemd/system )
+
+[Service]
+ExecStart=/etc/scylla/tools/save_scylla_logs.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

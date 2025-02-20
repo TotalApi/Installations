@@ -1,0 +1,9 @@
+[Unit]
+Description=Saving Influxdb Logs every second ( need to be copied to /etc/systemd/system )
+
+[Service]
+ExecStart=/etc/influxdb/tools/save_influxdb_logs.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

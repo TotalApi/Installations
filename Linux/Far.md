@@ -24,4 +24,3 @@ FAR на Linux
 
     printf '#!/bin/bash\nsudo far2l --mortal\n' | sudo tee /bin/far; sudo chmod ugo+x /bin/far 
 
-

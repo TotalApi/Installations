@@ -1,0 +1,11 @@
+[Unit]
+Description=Run save_influxdb_logs task every second ( need to be copied to /etc/systemd/system )
+
+[Timer]
+Unit=save_influxdb_logs.service
+OnBootSec=1s
+OnUnitActiveSec=1s
+AccuracySec=1ms
+
+[Install]
+WantedBy=timers.target
