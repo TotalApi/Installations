@@ -52,7 +52,7 @@
 
     sudo ufw allow 10000 comment 'Allow Chronograf access'
 
-    sudo ufw allow from 192.168.10.0/24 'Allow Local access'
+    sudo ufw allow from 192.168.10.0/24 comment 'Allow Local access'
     
 Вставка правил перед указанным
 ------------------------------
