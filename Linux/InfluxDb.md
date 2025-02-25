@@ -3,7 +3,7 @@
 [Ссылка 1](https://influxdata.com/downloads/)
 [Ссылка 2](https://medium.com/yavar/install-and-setup-influxdb-on-ubuntu-20-04-22-04-3d6e090ec70c)
 
-Последняя поддерживаемая версия `Influx 1.x` - `1.11.8.2`
+Последняя поддерживаемая версия `Influx 1.x` - `1.11.8-2`
 
 Debian and Ubuntu users can install the latest stable version of InfluxDB using the apt-get package manager. For Ubuntu users, you can add the InfluxData repository configuration by using the following commands:
 
@@ -154,6 +154,25 @@ Add Chronograf to autorun programs in file `/etc/rc.local`.
     http://influx-host:10000
 
 
+[Установка Kapacitor на Ubuntu](https://influxdata.com/downloads/)
+==================================================================
+
+Последняя поддерживаемая версия `Kapacitor` для `Influx 1.x` - `1.7.6-1`
+
+`Kapacitor` позволяет настраивать реакции при наступлении определённых событий.
+
+Ubuntu & Debian system install instructions
+
+	sudo apt-get install kapacitor
+
+или прямое скачивание и установка дистрибутива:
+
+    wget https://dl.influxdata.com/kapacitor/releases/kapacitor_1.7.6-1_amd64.deb
+    sudo dpkg -i kapacitor_1.7.6-1_amd64.deb
+
+
+
+ 
 
 [Установка Telegraf на Ubuntu](https://influxdata.com/downloads/)
 =================================================================
@@ -194,18 +213,3 @@ Ubuntu & Debian system install instructions
 
 
 
-[Установка Kapacitor на Ubuntu](https://influxdata.com/downloads/)
-==================================================================
-
-Последняя поддерживаемая версия `Kapacitor` для `Influx 1.x` - `1.6.5`
-
-`Kapacitor` позволяет настраивать реакции при наступлении определённых событий.
-
-Ubuntu & Debian system install instructions
-
-    wget https://dl.influxdata.com/kapacitor/releases/kapacitor_1.6.5-1_amd64.deb
-    sudo dpkg -i kapacitor_1.6.5-1_amd64.deb
-
-
-
- 

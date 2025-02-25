@@ -51,6 +51,8 @@
     sudo ufw allow 6379 comment 'Allow Redis http/udp access'
 
     sudo ufw allow 10000 comment 'Allow Chronograf access'
+
+    sudo ufw allow from 192.168.10.0/24 'Allow Local access'
     
 Вставка правил перед указанным
 ------------------------------
