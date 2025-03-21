@@ -170,6 +170,16 @@ Ubuntu & Debian system install instructions
     wget https://dl.influxdata.com/kapacitor/releases/kapacitor_1.7.6-1_amd64.deb
     sudo dpkg -i kapacitor_1.7.6-1_amd64.deb
 
+по умолчанию конфигурационный файл находится тут:
+
+    /etc/kapacitor/kapacitor.conf
+
+если необходимо получать данные из удалённого сервера InfluxDb нужно поменять в этом файле строку
+
+
+
+
+
 
 
  
