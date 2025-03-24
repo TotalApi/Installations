@@ -6,6 +6,7 @@
 - [Настройка фаервола iptables](iptables.md)
 - [Настройка фаервола UFW](ufw.md)
 - [Настройка Redis](redis.md)
+- [Настройка Aerospike](aerospike.md)
 - [Fail2Ban](Fail2Ban.md)
 - [MQTT Mosquitto](MQTT-Mosquitto.md)
 - [InfluxDb](InfluxDb.md)

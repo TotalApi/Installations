@@ -1,5 +1,7 @@
 [Установка Redis](https://redis.io/docs/getting-started/installation/install-redis-on-windows/)
-=======================================================================================
+===============================================================================================
+
+[Нюансы работы с Redis](https://habr.com/ru/companies/nixys/articles/765694/?code=dbe97fcf7d7cae5106e816137437e40b&state=QvJkxsag8ysluVmRic9zBPwJ&hl=ru)
 
 Установка 
 ---------
