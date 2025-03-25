@@ -54,6 +54,11 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
 
     asinfo -v status
 
+    asadm -e "info namespace"
+
+    asadm -e "info network"
+
+
 Консоль AQL
 -----------
 
