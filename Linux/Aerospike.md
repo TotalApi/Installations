@@ -8,24 +8,24 @@
 Ubuntu 20.04 
 - v.6.1.0
 
-    wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.1.0.47/aerospike-server-community-6.1.0.47-ubuntu20.04.tgz'
+        wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.1.0.47/aerospike-server-community-6.1.0.47-ubuntu20.04.tgz'
 
 Ubuntu 22.04 
 - v.6.3.0
 
-    wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.3.0.35/aerospike-server-community_6.3.0.35_tools-8.5.1_ubuntu20.04_x86_64.tgz'
+        wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.3.0.35/aerospike-server-community_6.3.0.35_tools-8.5.1_ubuntu20.04_x86_64.tgz'
 
 - v.6.4.0
 
-    wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.4.0.30/aerospike-server-community_6.4.0.30_tools-10.0.0_ubuntu22.04_x86_64.tgz'
+        wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.4.0.30/aerospike-server-community_6.4.0.30_tools-10.0.0_ubuntu22.04_x86_64.tgz'
 
 - v.7.2.0
 
-    wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/7.2.0/aerospike-server-community_7.2.0.8_tools-11.2.0_ubuntu24.04_x86_64.tgz'
+        wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/7.2.0/aerospike-server-community_7.2.0.8_tools-11.2.0_ubuntu24.04_x86_64.tgz'
 
 - v.8.0.0
 
-    wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/8.0.0/aerospike-server-community_8.0.0.5_tools-11.2.0_ubuntu24.04_x86_64.tgz'
+        wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/8.0.0/aerospike-server-community_8.0.0.5_tools-11.2.0_ubuntu24.04_x86_64.tgz'
 
 После скачивания:
 
