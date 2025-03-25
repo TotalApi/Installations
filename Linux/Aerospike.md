@@ -85,13 +85,15 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
 
 Открываем конфиг `/etc/aerospike/aerospike.conf` и добавляем:
 
+Для версий до `7.x`:
+
     namespace cache {
         replication-factor 2
         memory-size 1G
         default-ttl 7d    # 0 = без удаления по времени
         storage-engine memory
 
-        # Если нужны **долговременные данные**, можно добавить дисковое хранилище:
+        # Если нужны долговременные данные:
         storage-engine device {
             file /opt/aerospike/data/cache.dat
             filesize 4G
@@ -99,14 +101,31 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
         }
     }
 
+Для версий `7.x+`:
+
+    namespace cache {
+        replication-factor 2
+        #default-ttl 7d    # 0 = без удаления по времени
+
+        storage-engine memory {
+
+        	#data-size 1G         # для хранения только в памяти
+        
+            # Если нужны долговременные данные:
+            file /opt/aerospike/data/cache.dat
+            filesize 4G
+        }
+    }
+
+
 2. После внесения изменений перезапускаем Aerospike:
 
-    sudo service aerospike restart
+        sudo service aerospike restart
 
 
 3. Проверить, что namespace появился
 
-    aql> SHOW NAMESPACES;
+        aql> SHOW NAMESPACES;
 
 
 Конфигурация кластера
