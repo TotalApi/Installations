@@ -5,25 +5,27 @@
 Установка 
 ---------
 
-Ubuntu 20.04 
-- v.6.1.0
+**Ubuntu 20.04**
+
+- `v.6.1.0`
 
         wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.1.0.47/aerospike-server-community-6.1.0.47-ubuntu20.04.tgz'
 
-Ubuntu 22.04 
-- v.6.3.0
+**Ubuntu 22.04**
+
+- `v.6.3.0`
 
         wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.3.0.35/aerospike-server-community_6.3.0.35_tools-8.5.1_ubuntu20.04_x86_64.tgz'
 
-- v.6.4.0
+- `v.6.4.0`
 
         wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.4.0.30/aerospike-server-community_6.4.0.30_tools-10.0.0_ubuntu22.04_x86_64.tgz'
 
-- v.7.2.0
+- `v.7.2.0`
 
         wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/7.2.0/aerospike-server-community_7.2.0.8_tools-11.2.0_ubuntu24.04_x86_64.tgz'
 
-- v.8.0.0
+- `v.8.0.0` (не смог корректно запустить без кластера)
 
         wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/8.0.0/aerospike-server-community_8.0.0.5_tools-11.2.0_ubuntu24.04_x86_64.tgz'
 
@@ -66,6 +68,15 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
 
     aql -h <IP_адрес> -p 3000
 
+Примеры команд AQL:
+    
+    SHOW namespaces;
+    SHOW sets;
+    SHOW bins;
+
+    INSERT INTO bar.users (PK, name, age) VALUES ('123', 'Evgeniy', 30);
+    SELECT * FROM bar.users;
+
 
 Создание namespace
 ------------------
@@ -74,19 +85,18 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
 
 Открываем конфиг `/etc/aerospike/aerospike.conf` и добавляем:
 
-    namespace totalapi_cache {
+    namespace cache {
         replication-factor 2
-        memory-size 4G
-        default-ttl 0  # 0 = без удаления по времени
+        memory-size 1G
+        default-ttl 7d    # 0 = без удаления по времени
         storage-engine memory
-    }
 
-Если нужны **долговременные данные**, можно добавить дисковое хранилище:
-
-    storage-engine device {
-        file /opt/aerospike/data/totalapi_cache.dat
-        filesize 8G
-        data-in-memory true
+        # Если нужны **долговременные данные**, можно добавить дисковое хранилище:
+        storage-engine device {
+            file /opt/aerospike/data/cache.dat
+            filesize 4G
+            data-in-memory true
+        }
     }
 
 2. После внесения изменений перезапускаем Aerospike:
@@ -113,13 +123,6 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
         }
     }
 
-    namespace cache {
-        replication-factor 2
-        memory-size 4G
-        default-ttl 1h  # Кеш с автоудалением через 1 час
-        storage-engine memory
-    }
-
 Запускаем Aerospike с новой конфигурацией:
     
     sudo servcie aerospike restart
@@ -134,3 +137,18 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
 
 Вы должны увидеть 3 узла в кластере.
 
+
+
+Удаление
+--------
+
+    sudo systemctl stop aerospike
+    sudo apt remove --purge aerospike-server-community
+
+    sudo rm -rf /etc/aerospike
+    sudo rm -rf /opt/aerospike
+    sudo rm -rf /var/log/aerospike
+    sudo rm -rf /var/lib/aerospike
+    
+    sudo apt remove --purge aerospike-tools
+    sudo rm -rf /root/.aerospike
