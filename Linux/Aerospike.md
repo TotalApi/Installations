@@ -13,10 +13,6 @@
 
 **Ubuntu 22.04**
 
-- `v.6.3.0`
-
-        wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.3.0.35/aerospike-server-community_6.3.0.35_tools-8.5.1_ubuntu20.04_x86_64.tgz'
-
 - `v.6.4.0`
 
         wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/6.4.0.30/aerospike-server-community_6.4.0.30_tools-10.0.0_ubuntu22.04_x86_64.tgz'
@@ -91,6 +87,8 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
         replication-factor 2
         memory-size 1G
         default-ttl 7d    # 0 = без удаления по времени
+        nsup-period 3600  # Очистка каждые 3600 секунд (1 час)
+
         storage-engine memory
 
         # Если нужны долговременные данные:
@@ -105,7 +103,8 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
 
     namespace cache {
         replication-factor 2
-        #default-ttl 7d    # 0 = без удаления по времени
+        default-ttl 7d    # 0 = без удаления по времени
+        nsup-period 3600  # Очистка каждые 3600 секунд (1 час)
 
         storage-engine memory {
 
