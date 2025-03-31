@@ -21,7 +21,7 @@
 
         wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/7.2.0/aerospike-server-community_7.2.0.8_tools-11.2.0_ubuntu24.04_x86_64.tgz'
 
-- `v.8.0.0` (не смог корректно запустить без кластера)
+- `v.8.0.0`
 
         wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/8.0.0/aerospike-server-community_8.0.0.5_tools-11.2.0_ubuntu24.04_x86_64.tgz'
 
@@ -32,6 +32,11 @@
     cd ./aerospike-server-community_*
 
     sudo ./asinstall
+
+
+**ВНИМАНИЕ!!!**
+При запуске находит другие экземпляры `Aerospike` в локальной сети и автоматически объединяет их в кластер.
+
 
 
 Configure Aerospike Database
@@ -125,6 +130,17 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
 3. Проверить, что namespace появился
 
         aql> SHOW NAMESPACES;
+
+
+4. Полная очистка namespace
+
+        asadm -e "enable; manage truncate ns cache"
+
+
+5. Полная очистка set
+
+        asadm -e "enable; manage truncate ns cache set totalapi"
+
 
 
 Конфигурация кластера
