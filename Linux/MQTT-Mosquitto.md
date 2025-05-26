@@ -36,6 +36,11 @@
 
     sudo mosquitto_passwd -b /etc/mosquitto/passwd mqtt mqtt
 
+Дадим права на файл паролей для `mosquitto`
+
+    sudo chown mosquitto:mosquitto /etc/mosquitto/passwd
+    sudo chmod 640 /etc/mosquitto/passwd
+
 
 Создаем свой конфигурационный файл
 ----------------------------------
@@ -118,11 +123,11 @@ Be sure to substitute your server’s domain name here:
 
 Открыть порты в фаерволе
 
-    sudo ufw allow 1883
-    sudo ufw allow 9991
-    sudo ufw allow 9992
-    sudo ufw allow 9993
-    sudo ufw allow 9994
+    sudo ufw allow 1883     comment 'Mosquito - mqtt://'
+    sudo ufw allow 9991     comment 'Mosquito - mqtt://'
+    sudo ufw allow 9992     comment 'Mosquito - mqtts://'
+    sudo ufw allow 9993     comment 'Mosquito - ws://'
+    sudo ufw allow 9994     comment 'Mosquito - wss://'
 	
 	
 Configuring Certbot Renewals
