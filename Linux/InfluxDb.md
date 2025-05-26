@@ -87,21 +87,23 @@ And then to install and start the InfluxDB service:
 
 1. Создание новой базы
 
-    > CREATE DATABASE stat_db    # stat_db - ИМЯ_БАЗЫ
+    -- stat_db - ИМЯ_БАЗЫ
+    CREATE DATABASE stat_db
 
 2. Создание retention policy - сколько данные будут храниться в базе
 
-    > USE stat_db                                                                   # stat_db - ИМЯ_БАЗЫ
-    > CREATE RETENTION POLICY "seven_days" ON stat_db DURATION 7d REPLICATION 1     # stat_db - ИМЯ_БАЗЫ
-    > CREATE USER root WITH PASSWORD 'P@ssw0rd' WITH ALL PRIVILEGES
+    -- stat_db - ИМЯ_БАЗЫ
+    USE stat_db
+    CREATE RETENTION POLICY "seven_days" ON stat_db DURATION 7d REPLICATION 1
+    CREATE USER root WITH PASSWORD 'P@ssw0rd' WITH ALL PRIVILEGES
 
 3. Удаление измерения - аналог таблицы (в случае если изменились типы полей в измерении, то необходимо удалять все измерение)
 
-    > DROP MEASUREMENT <ИМЯ_ИЗМЕРЕНИЯ>
+    DROP MEASUREMENT <ИМЯ_ИЗМЕРЕНИЯ>
 
 4. Удаление данных из таблицы
 
-    > DROP SERIES FROM <ИМЯ_ИЗМЕРЕНИЯ> [WHERE ...]
+    DROP SERIES FROM <ИМЯ_ИЗМЕРЕНИЯ> [WHERE ...]
 
 
 [Fixing SHOW MEASUREMENTS bug](https://github.com/influxdata/influxdb/issues/4395)
@@ -109,14 +111,14 @@ And then to install and start the InfluxDB service:
 
 Если сразу после установки `show measurements` возвращает пустое множество выполните в консоле Influx:
     
-    > use stat_db
-    > show measurements
-    > insert foo value=12
-    > show measurements
+    use stat_db
+    show measurements
+    insert foo value=12
+    show measurements
 
 После записи реальных данных это измерение можно удалить:
 	
-	> drop measurement foo
+	drop measurement foo
 
 
     

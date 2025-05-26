@@ -23,7 +23,8 @@
 
 - `v.8.0.0`
 
-        wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/8.0.0/aerospike-server-community_8.0.0.5_tools-11.2.0_ubuntu24.04_x86_64.tgz'
+        wget -O aerospike.tgz 'https://download.aerospike.com/artifacts/aerospike-server-community/8.0.0/aerospike-server-community_8.0.0.8_tools-11.2.2_ubuntu22.04_x86_64.tgz'
+                                                                                                         
 
 После скачивания:
 
