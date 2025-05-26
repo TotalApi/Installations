@@ -85,23 +85,23 @@ And then to install and start the InfluxDB service:
     
     influx
 
-1. Создание новой базы
+Создание новой базы
 
     -- stat_db - ИМЯ_БАЗЫ
     CREATE DATABASE stat_db
 
-2. Создание retention policy - сколько данные будут храниться в базе
+Создание retention policy - сколько данные будут храниться в базе
 
     -- stat_db - ИМЯ_БАЗЫ
     USE stat_db
     CREATE RETENTION POLICY "seven_days" ON stat_db DURATION 7d REPLICATION 1
     CREATE USER root WITH PASSWORD 'P@ssw0rd' WITH ALL PRIVILEGES
 
-3. Удаление измерения - аналог таблицы (в случае если изменились типы полей в измерении, то необходимо удалять все измерение)
+Удаление измерения - аналог таблицы (в случае если изменились типы полей в измерении, то необходимо удалять все измерение)
 
     DROP MEASUREMENT <ИМЯ_ИЗМЕРЕНИЯ>
 
-4. Удаление данных из таблицы
+Удаление данных из таблицы
 
     DROP SERIES FROM <ИМЯ_ИЗМЕРЕНИЯ> [WHERE ...]
 
