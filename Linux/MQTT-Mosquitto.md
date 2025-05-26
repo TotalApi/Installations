@@ -4,7 +4,8 @@
 - [Статья 2](https://dzen.ru/a/YEiOMAECa0UEAXeH)
 - [Статья 3](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-the-mosquitto-mqtt-messaging-broker-on-ubuntu-18-04-quickstart)
 
-Добавляем репозиторий mosquitto
+Добавляем репозиторий mosquitto (если он недоступен)
+----------------------------------------------------
 
 	sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
 
@@ -12,15 +13,19 @@
 
 	sudo apt-get update
 
-Устанавливаем Mosquitto
 
-	sudo apt install mosquitto mosquitto-clients
+Устанавливаем Mosquitto
+-----------------------
+
+	sudo apt install mosquitto mosquitto-clients -y
 
 Проверяем запущена служба брокера
 
 	sudo service mosquitto status
 
+
 Настройка пароля MQTT
+---------------------
 
 Для доступа по логину и паролю выполним команду (см.ниже) которая создаст файл passwd в каталоге 
 `/etc/mosquitto/` и сгенерирует в нем пароль для пользователя `codedevice`.
@@ -29,9 +34,11 @@
 
 Добавим нового пользователя с логином `mqtt` и паролем `mqtt`:
 
-    mosquitto_passwd -b /etc/mosquitto/passwd mqtt mqtt
+    sudo mosquitto_passwd -b /etc/mosquitto/passwd mqtt mqtt
+
 
 Создаем свой конфигурационный файл
+----------------------------------
 
 	sudo nano /etc/mosquitto/conf.d/default.conf
 
