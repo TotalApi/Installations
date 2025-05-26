@@ -183,10 +183,39 @@ Ubuntu & Debian system install instructions
 
 
 
+Установка Telegraf на Ubuntu 22.04
+==================================
 
- 
+Добавить репозиторий InfluxData
+-------------------------------
 
-[Установка Telegraf на Ubuntu](https://influxdata.com/downloads/)
+    wget -qO- https://repos.influxdata.com/influxdata-archive_compat.key | sudo tee /etc/apt/trusted.gpg.d/influxdata.asc
+    echo "deb [signed-by=/etc/apt/trusted.gpg.d/influxdata.asc] https://repos.influxdata.com/ubuntu jammy stable" | sudo tee /etc/apt/sources.list.d/influxdata.list
+
+    sudo apt update
+
+
+Установить `telegraf`
+---------------------
+
+    sudo apt install telegraf
+
+
+Запустить и включить автозапуск
+-------------------------------
+
+    sudo systemctl enable --now telegraf
+
+
+Проверить статус
+----------------
+
+    sudo systemctl status telegraf
+
+
+
+
+[Установка Telegraf на Ubuntu (старое)](https://influxdata.com/downloads/)
 =================================================================
 
 `Telegraf` собирает системную статистику об операционной системе.
@@ -203,22 +232,30 @@ Ubuntu & Debian system install instructions
 Настройка Telegraf для отдельного сервера
 -----------------------------------------
 
- - Configuration file is here:
+Configuration file is here `/etc/telegraf/telegraf.conf`.
 
-    	/etc/telegraf/telegraf.conf
+Создать новый конфиг (опционально):
 
- - Установить название сервера:
+    telegraf config > telegraf.conf
+
+
+Установить название сервера
+---------------------------
 
 		[agent]
 			hostname = "{server_name}"
 
-- Установить адрес передачи в InfluxDB:
+
+Установить адрес передачи в InfluxDB
+------------------------------------
 
 		[[outputs.influxdb]]
 			urls = ["udp://stat.totalapi.io:4444"]  # только на удалённых серверах
 			database = "telegraf"
 
-- Запуск telegraf с выводом отладочной информации
+
+Запуск telegraf с выводом отладочной информации
+-----------------------------------------------
  
 		telegraf -debug             
 			
