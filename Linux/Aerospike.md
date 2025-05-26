@@ -49,7 +49,7 @@ The default location of the configuration file is `/etc/aerospike/aerospike.conf
 ----------
     sudo systemctl enable aerospike
 
-    service aerospike start
+    sudo service aerospike start
 
 
 Проверить, что всё работает можно командой в `asinfo`
