@@ -1,0 +1,231 @@
+{
+	"meta": {
+		"chronografVersion": "1.10.7",
+		"sources": {
+			"1": {
+				"name": "Local",
+				"link": "/chronograf/v1/sources/1"
+			},
+			"2": {
+				"name": "Old Test",
+				"link": "/chronograf/v1/sources/2"
+			}
+		}
+	},
+	"dashboard": {
+		"id": "11",
+		"cells": [
+			{
+				"i": "6030ff4e-7ede-49da-95b8-3fa58ff2ff5d",
+				"x": 0,
+				"y": 0,
+				"w": 4,
+				"h": 4,
+				"name": "Ping – Packet Loss Percent",
+				"queries": [
+					{
+						"query": "SELECT max(\"percent_packet_loss\") AS \"packet_loss\" FROM \"telegraf\".\"autogen\".\"ping\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"url\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT max(\"percent_packet_loss\") AS \"packet_loss\" FROM \"telegraf\".\"autogen\".\"ping\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"url\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/11/cells/6030ff4e-7ede-49da-95b8-3fa58ff2ff5d"
+				}
+			},
+			{
+				"i": "61582955-551a-439a-b886-6844509b1b2d",
+				"x": 4,
+				"y": 0,
+				"w": 4,
+				"h": 4,
+				"name": "Ping – Response Times (ms)",
+				"queries": [
+					{
+						"query": "SELECT mean(\"average_response_ms\") AS \"average\", mean(\"minimum_response_ms\") AS \"min\", mean(\"maximum_response_ms\") AS \"max\" FROM \"telegraf\".\"autogen\".\"ping\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"url\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT mean(\"average_response_ms\") AS \"average\", mean(\"minimum_response_ms\") AS \"min\", mean(\"maximum_response_ms\") AS \"max\" FROM \"telegraf\".\"autogen\".\"ping\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"url\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/11/cells/61582955-551a-439a-b886-6844509b1b2d"
+				}
+			}
+		],
+		"templates": [
+			{
+				"tempVar": ":host:",
+				"values": [
+					{
+						"value": "test2",
+						"type": "tagValue",
+						"selected": true
+					}
+				],
+				"id": "d9493f1f-429e-4f72-9749-528e04fab405",
+				"type": "tagValues",
+				"label": "",
+				"query": {
+					"influxql": "SHOW TAG VALUES ON :database: FROM :measurement: WITH KEY=:tagKey:",
+					"db": "telegraf",
+					"measurement": "ping",
+					"tagKey": "host",
+					"fieldKey": ""
+				},
+				"sourceID": "dynamic",
+				"links": {
+					"self": "/chronograf/v1/dashboards/11/templates/d9493f1f-429e-4f72-9749-528e04fab405"
+				}
+			}
+		],
+		"name": "Ping",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/11",
+			"cells": "/chronograf/v1/dashboards/11/cells",
+			"templates": "/chronograf/v1/dashboards/11/templates"
+		}
+	}
+}

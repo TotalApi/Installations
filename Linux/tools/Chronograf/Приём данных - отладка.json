@@ -1,0 +1,2028 @@
+{
+	"meta": {
+		"chronografVersion": "1.10.0",
+		"sources": {
+			"1": {
+				"name": "Influx DB",
+				"link": "/chronograf/v1/sources/1"
+			}
+		}
+	},
+	"dashboard": {
+		"id": "12",
+		"cells": [
+			{
+				"i": "052e46d7-aca6-4a78-817d-03a1ddb57526",
+				"x": 9,
+				"y": 2,
+				"w": 3,
+				"h": 2,
+				"name": "Время записи координат",
+				"queries": [
+					{
+						"query": "SELECT mean(\"value\") AS \"mean_value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteCoordinateTime' GROUP BY time(:interval:) FILL(none)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT mean(\"value\") AS \"mean_value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteCoordinateTime' GROUP BY time(:interval:) FILL(none)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "мс",
+						"prefix": "",
+						"suffix": "мс",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "0ac1e851-5014-4145-acfe-1178390bd64c",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "433774a6-cbe2-40ff-9171-320a4c56138a",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/052e46d7-aca6-4a78-817d-03a1ddb57526"
+				}
+			},
+			{
+				"i": "5a89453d-c0f7-4391-8ebc-4564a42b9887",
+				"x": 6,
+				"y": 2,
+				"w": 3,
+				"h": 2,
+				"name": "Запись координат",
+				"queries": [
+					{
+						"query": "SELECT \"load\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteCoordinate'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"load\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteCoordinate'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "коорд/сек",
+						"prefix": "",
+						"suffix": " /сек",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "0ac1e851-5014-4145-acfe-1178390bd64c",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "433774a6-cbe2-40ff-9171-320a4c56138a",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/5a89453d-c0f7-4391-8ebc-4564a42b9887"
+				}
+			},
+			{
+				"i": "30b726b7-9eef-4c03-b33d-c9b8c3eab346",
+				"x": 9,
+				"y": 0,
+				"w": 3,
+				"h": 2,
+				"name": "Время обработки пакета данных",
+				"queries": [
+					{
+						"query": "SELECT \"load\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteDataPacketTime'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"load\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteDataPacketTime'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "мс",
+						"prefix": "",
+						"suffix": "мс",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "0ac1e851-5014-4145-acfe-1178390bd64c",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "433774a6-cbe2-40ff-9171-320a4c56138a",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/30b726b7-9eef-4c03-b33d-c9b8c3eab346"
+				}
+			},
+			{
+				"i": "aa43a68e-411c-4cfb-ae70-fbc13f93cfdf",
+				"x": 2,
+				"y": 1,
+				"w": 2,
+				"h": 1,
+				"name": "Неверных пакетов",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='InvalidDataPacket' AND \"IsException\"='False'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='InvalidDataPacket' AND \"IsException\"='False'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": " ",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "showWhenNoData",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/aa43a68e-411c-4cfb-ae70-fbc13f93cfdf"
+				}
+			},
+			{
+				"i": "b06e2c10-603a-49ed-951f-5814f52f5ea2",
+				"x": 3,
+				"y": 0,
+				"w": 3,
+				"h": 1,
+				"name": "Принятых TCP-пакетов ",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='Tcp_DataPackets_Income' AND \"IsException\"='False'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='Tcp_DataPackets_Income' AND \"IsException\"='False'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": " ",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "showWhenNoData",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/b06e2c10-603a-49ed-951f-5814f52f5ea2"
+				}
+			},
+			{
+				"i": "0036ade2-4bc5-4cb4-8bf9-f6b348751b24",
+				"x": 0,
+				"y": 1,
+				"w": 2,
+				"h": 1,
+				"name": "Неавторизованных пакетов",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='NoAuthDataPacket'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='NoAuthDataPacket'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": " ",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "showWhenNoData",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/0036ade2-4bc5-4cb4-8bf9-f6b348751b24"
+				}
+			},
+			{
+				"i": "253e2acd-b4d7-4856-bfca-e2335c66f7b5",
+				"x": 0,
+				"y": 6,
+				"w": 4,
+				"h": 2,
+				"name": "Кол-во TelematicsDbContext",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='CreatedTelematicsDbContext'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='CreatedTelematicsDbContext'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							"1000"
+						],
+						"label": "Количество",
+						"prefix": "",
+						"suffix": " ",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d61d338b-d071-4c23-8d26-589d31c47341",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "3c5a48b2-f61b-4505-a87c-0f3a1434b073",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/253e2acd-b4d7-4856-bfca-e2335c66f7b5"
+				}
+			},
+			{
+				"i": "2d9feebf-c8d6-4931-ac0b-23f115a55914",
+				"x": 8,
+				"y": 4,
+				"w": 4,
+				"h": 2,
+				"name": "Свободно в пуле сессий (метаданные)",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='SessionPool.Free.$metadata'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='SessionPool.Free.$metadata'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							"500"
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "f25f7368-8e1f-4141-91df-93fda2e0081f",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "049ae1d8-859f-4811-85b2-ba0dfd593782",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/2d9feebf-c8d6-4931-ac0b-23f115a55914"
+				}
+			},
+			{
+				"i": "19c4fd24-366d-497d-8476-e14a6dc27806",
+				"x": 4,
+				"y": 4,
+				"w": 4,
+				"h": 2,
+				"name": "Выдано из пула сессий (метаданные)",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='SessionPool.Taken.$metadata'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='SessionPool.Taken.$metadata'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							"500"
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "f25f7368-8e1f-4141-91df-93fda2e0081f",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "049ae1d8-859f-4811-85b2-ba0dfd593782",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/19c4fd24-366d-497d-8476-e14a6dc27806"
+				}
+			},
+			{
+				"i": "9b49d077-79d2-4680-9c15-bb71c57293a0",
+				"x": 3,
+				"y": 2,
+				"w": 3,
+				"h": 2,
+				"name": "Прохождение через фильтры",
+				"queries": [
+					{
+						"query": "SELECT mean(\"count\") AS \"mean_count\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"operation\"='DataFilterProcessTime' AND \"method\"='TotalApi.DataFilters.Api.DataProcessingFilter.Process' AND \"module\"='!TotalApi'+:db:  GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT mean(\"count\") AS \"mean_count\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"operation\"='DataFilterProcessTime' AND \"method\"='TotalApi.DataFilters.Api.DataProcessingFilter.Process' AND \"module\"='!TotalApi'+:db:  GROUP BY time(:interval:) FILL(null)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "03a4ab84-a4f8-4818-959b-b6d2618ca373",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "e5b02d83-7e63-46e0-9e61-8b124b4ec569",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "91c7e764-053e-4bd5-b569-a6f320e83b57",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/9b49d077-79d2-4680-9c15-bb71c57293a0"
+				}
+			},
+			{
+				"i": "dd838e3b-3cb2-415f-bdc6-53f983afed94",
+				"x": 0,
+				"y": 4,
+				"w": 4,
+				"h": 2,
+				"name": "Кол-во TelematicsDbContext (метаданные)",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='CreatedTelematicsDbContext.$metadata'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='CreatedTelematicsDbContext.$metadata'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							"1000"
+						],
+						"label": "Количество",
+						"prefix": "",
+						"suffix": " ",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d61d338b-d071-4c23-8d26-589d31c47341",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "3c5a48b2-f61b-4505-a87c-0f3a1434b073",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/dd838e3b-3cb2-415f-bdc6-53f983afed94"
+				}
+			},
+			{
+				"i": "e7c177ee-21d9-426a-b3a3-9a81039ba9a6",
+				"x": 0,
+				"y": 2,
+				"w": 3,
+				"h": 2,
+				"name": "Созданных экземпляров сессий",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='CreatedTelematicsDbSession'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='CreatedTelematicsDbSession'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "f25f7368-8e1f-4141-91df-93fda2e0081f",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "049ae1d8-859f-4811-85b2-ba0dfd593782",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/e7c177ee-21d9-426a-b3a3-9a81039ba9a6"
+				}
+			},
+			{
+				"i": "895130ca-b96d-4be3-8f47-2afa28cf7967",
+				"x": 4,
+				"y": 6,
+				"w": 4,
+				"h": 2,
+				"name": "Выдано из пула сессий",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='SessionPool.Taken'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='SessionPool.Taken'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							"500"
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "f25f7368-8e1f-4141-91df-93fda2e0081f",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "049ae1d8-859f-4811-85b2-ba0dfd593782",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/895130ca-b96d-4be3-8f47-2afa28cf7967"
+				}
+			},
+			{
+				"i": "123e291c-9f05-4b9a-a419-2d50545fc321",
+				"x": 8,
+				"y": 6,
+				"w": 4,
+				"h": 2,
+				"name": "Свободно в пуле сессий",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='SessionPool.Free'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='SessionPool.Free'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"0",
+							"500"
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "f25f7368-8e1f-4141-91df-93fda2e0081f",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "049ae1d8-859f-4811-85b2-ba0dfd593782",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/123e291c-9f05-4b9a-a419-2d50545fc321"
+				}
+			},
+			{
+				"i": "e181bd6f-7471-4cac-b55a-3725ad97ba46",
+				"x": 6,
+				"y": 0,
+				"w": 3,
+				"h": 2,
+				"name": "Частота получения пакетов",
+				"queries": [
+					{
+						"query": "SELECT \"load\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND (\"IsException\"='True' OR \"IsException\"='False') AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteDataPacket' GROUP BY \"IsException\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"load\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND (\"IsException\"='True' OR \"IsException\"='False') AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteDataPacket' GROUP BY \"IsException\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": " ",
+						"prefix": "",
+						"suffix": " /сек",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d61d338b-d071-4c23-8d26-589d31c47341",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "3c5a48b2-f61b-4505-a87c-0f3a1434b073",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/e181bd6f-7471-4cac-b55a-3725ad97ba46"
+				}
+			},
+			{
+				"i": "a71e86c3-dc6b-41cc-9b8f-790b6e2a2f49",
+				"x": 4,
+				"y": 1,
+				"w": 2,
+				"h": 1,
+				"name": "Ошибок записи",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"IsException\"='True' AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteDataPacket'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"IsException\"='True' AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteDataPacket'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "Время записи пакета данных, мс",
+						"prefix": "",
+						"suffix": " ",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "showWhenNoData",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/a71e86c3-dc6b-41cc-9b8f-790b6e2a2f49"
+				}
+			},
+			{
+				"i": "48b50b27-613b-4e54-b0be-c7e1e010ec6c",
+				"x": 0,
+				"y": 0,
+				"w": 3,
+				"h": 1,
+				"name": "Принятых пакетов данных",
+				"queries": [
+					{
+						"query": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteDataPacket' AND \"IsException\"='False'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\" FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > :dashboardTime: AND \"module\"='!TotalApi'+:db: AND \"operation\"='WriteDataPacket' AND \"IsException\"='False'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": " ",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "text",
+						"hex": "#00C9FF",
+						"name": "laser",
+						"value": "-1000000000000000000"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 1
+				},
+				"note": "",
+				"noteVisibility": "showWhenNoData",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/cells/48b50b27-613b-4e54-b0be-c7e1e010ec6c"
+				}
+			}
+		],
+		"templates": [
+			{
+				"tempVar": ":db:",
+				"values": [
+					{
+						"value": "'.GorTrans'",
+						"type": "map",
+						"selected": false,
+						"key": "Гортранс"
+					},
+					{
+						"value": "'.UAD'",
+						"type": "map",
+						"selected": false,
+						"key": "UAD"
+					},
+					{
+						"value": "'.Test.GorTrans'",
+						"type": "map",
+						"selected": false,
+						"key": "ГортрансTest"
+					},
+					{
+						"value": "'.Work'",
+						"type": "map",
+						"selected": true,
+						"key": "Work"
+					},
+					{
+						"value": "'.Ambulance'",
+						"type": "map",
+						"selected": false,
+						"key": "Ambulance"
+					},
+					{
+						"value": "''",
+						"type": "map",
+						"selected": false,
+						"key": "Dev"
+					},
+					{
+						"value": "'.Steko'",
+						"type": "map",
+						"selected": false,
+						"key": "Стеко"
+					},
+					{
+						"value": "'.DSNS'",
+						"type": "map",
+						"selected": false,
+						"key": "Dsns"
+					},
+					{
+						"value": "'.Energo'",
+						"type": "map",
+						"selected": false,
+						"key": "Энерго"
+					},
+					{
+						"value": "'.Monolith.Test'",
+						"type": "map",
+						"selected": false,
+						"key": "Debug"
+					},
+					{
+						"value": "'.GTT'",
+						"type": "map",
+						"selected": false,
+						"key": "GTT"
+					}
+				],
+				"id": "ef6981c1-04d3-4181-8b94-49d56f742e15",
+				"type": "map",
+				"label": "",
+				"query": {
+					"influxql": "",
+					"measurement": "",
+					"tagKey": "",
+					"fieldKey": ""
+				},
+				"sourceID": "dynamic",
+				"links": {
+					"self": "/chronograf/v1/dashboards/12/templates/ef6981c1-04d3-4181-8b94-49d56f742e15"
+				}
+			}
+		],
+		"name": "Приём данных - отладка",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/12",
+			"cells": "/chronograf/v1/dashboards/12/cells",
+			"templates": "/chronograf/v1/dashboards/12/templates"
+		}
+	}
+}

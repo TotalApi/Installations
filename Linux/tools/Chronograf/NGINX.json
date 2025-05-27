@@ -1,0 +1,602 @@
+{
+	"meta": {
+		"chronografVersion": "1.10.7",
+		"sources": {
+			"1": {
+				"name": "Local",
+				"link": "/chronograf/v1/sources/1"
+			},
+			"2": {
+				"name": "Old Test",
+				"link": "/chronograf/v1/sources/2"
+			}
+		}
+	},
+	"dashboard": {
+		"id": "5",
+		"cells": [
+			{
+				"i": "10d3dbc6-d737-42fb-bf13-1c930b090ca6",
+				"x": 0,
+				"y": 0,
+				"w": 4,
+				"h": 4,
+				"name": "NGINX – Client Connections",
+				"queries": [
+					{
+						"query": "SELECT non_negative_derivative(max(\"accepts\"), 1s) AS \"accepts\", non_negative_derivative(max(\"handled\"), 1s) AS \"handled\", non_negative_derivative(max(\"active\"), 1s) AS \"active\" FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT non_negative_derivative(max(\"accepts\"), 1s) AS \"accepts\", non_negative_derivative(max(\"handled\"), 1s) AS \"handled\", non_negative_derivative(max(\"active\"), 1s) AS \"active\" FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "943ff87b-77c1-4ab8-a100-9258acbdb799",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "3e55ff5e-4135-4cf7-8591-f9233e70b1a9",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "fd7dfe4f-c6d1-455e-b8fa-178c88ccc179",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/5/cells/10d3dbc6-d737-42fb-bf13-1c930b090ca6"
+				}
+			},
+			{
+				"i": "92be056d-2887-4613-94ae-f4fee6e9e630",
+				"x": 4,
+				"y": 0,
+				"w": 4,
+				"h": 4,
+				"name": "NGINX – Client Errors",
+				"queries": [
+					{
+						"query": "SELECT non_negative_derivative(max(\"accepts\")) - non_negative_derivative(max(\"handled\")) FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT non_negative_derivative(max(\"accepts\")) - non_negative_derivative(max(\"handled\")) FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "943ff87b-77c1-4ab8-a100-9258acbdb799",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "3e55ff5e-4135-4cf7-8591-f9233e70b1a9",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "fd7dfe4f-c6d1-455e-b8fa-178c88ccc179",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/5/cells/92be056d-2887-4613-94ae-f4fee6e9e630"
+				}
+			},
+			{
+				"i": "0e8c3296-6384-45e2-901d-229971c6bc02",
+				"x": 8,
+				"y": 0,
+				"w": 4,
+				"h": 4,
+				"name": "NGINX – Client Requests",
+				"queries": [
+					{
+						"query": "SELECT non_negative_derivative(max(\"requests\"), 1s) AS \"requests\" FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT non_negative_derivative(max(\"requests\"), 1s) AS \"requests\" FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "943ff87b-77c1-4ab8-a100-9258acbdb799",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "3e55ff5e-4135-4cf7-8591-f9233e70b1a9",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "fd7dfe4f-c6d1-455e-b8fa-178c88ccc179",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/5/cells/0e8c3296-6384-45e2-901d-229971c6bc02"
+				}
+			},
+			{
+				"i": "95dce721-ee1d-41a1-98eb-9cc789e159e8",
+				"x": 0,
+				"y": 4,
+				"w": 4,
+				"h": 4,
+				"name": "NGINX – Active Client State",
+				"queries": [
+					{
+						"query": "SELECT non_negative_derivative(max(\"waiting\"), 1s) AS \"waiting\", non_negative_derivative(max(\"reading\"), 1s) AS \"reading\", non_negative_derivative(max(\"writing\"), 1s) AS \"writing\" FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT non_negative_derivative(max(\"waiting\"), 1s) AS \"waiting\", non_negative_derivative(max(\"reading\"), 1s) AS \"reading\", non_negative_derivative(max(\"writing\"), 1s) AS \"writing\" FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "943ff87b-77c1-4ab8-a100-9258acbdb799",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "3e55ff5e-4135-4cf7-8591-f9233e70b1a9",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "fd7dfe4f-c6d1-455e-b8fa-178c88ccc179",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/5/cells/95dce721-ee1d-41a1-98eb-9cc789e159e8"
+				}
+			},
+			{
+				"i": "6d9066c5-2e9e-42ae-b2e6-37becd1e19c0",
+				"x": 4,
+				"y": 4,
+				"w": 4,
+				"h": 4,
+				"name": "NGINX – Active Client State (clone 1)",
+				"queries": [
+					{
+						"query": "SELECT non_negative_derivative(max(\"waiting\"), 1s) AS \"waiting\", non_negative_derivative(max(\"reading\"), 1s) AS \"reading\", non_negative_derivative(max(\"writing\"), 1s) AS \"writing\" FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT non_negative_derivative(max(\"waiting\"), 1s) AS \"waiting\", non_negative_derivative(max(\"reading\"), 1s) AS \"reading\", non_negative_derivative(max(\"writing\"), 1s) AS \"writing\" FROM \"telegraf\".\"autogen\".\"nginx\" WHERE time > :dashboardTime: AND \"host\" = :host: AND \"host\" = :host: GROUP BY time(:interval:), \"server\"",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "852ddeb1-0b5c-43c7-9b5b-e1a12cd96f16",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "7524d06d-7b38-4a9c-bf37-9a1a3a7c4ed3",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "16171cf5-bb07-4a9d-8c24-fa636fd80f46",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/5/cells/6d9066c5-2e9e-42ae-b2e6-37becd1e19c0"
+				}
+			}
+		],
+		"templates": [
+			{
+				"tempVar": ":host:",
+				"values": [],
+				"id": "c47c26bd-fb64-423e-b6c0-57d7242f5f2e",
+				"type": "tagValues",
+				"label": "",
+				"query": {
+					"influxql": "SHOW TAG VALUES ON :database: FROM :measurement: WITH KEY=:tagKey:",
+					"db": "telegraf",
+					"measurement": "nginx",
+					"tagKey": "host",
+					"fieldKey": ""
+				},
+				"sourceID": "dynamic",
+				"links": {
+					"self": "/chronograf/v1/dashboards/5/templates/c47c26bd-fb64-423e-b6c0-57d7242f5f2e"
+				}
+			}
+		],
+		"name": "NGINX",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/5",
+			"cells": "/chronograf/v1/dashboards/5/cells",
+			"templates": "/chronograf/v1/dashboards/5/templates"
+		}
+	}
+}

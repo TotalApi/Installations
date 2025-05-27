@@ -1,0 +1,431 @@
+{
+	"meta": {
+		"chronografVersion": "1.10.7",
+		"sources": {
+			"1": {
+				"name": "Local",
+				"link": "/chronograf/v1/sources/1"
+			},
+			"2": {
+				"name": "Old Test",
+				"link": "/chronograf/v1/sources/2"
+			}
+		}
+	},
+	"dashboard": {
+		"id": "6",
+		"cells": [
+			{
+				"i": "ed8647cc-cf02-450b-891f-905cdaa60b01",
+				"x": 0,
+				"y": 0,
+				"w": 4,
+				"h": 4,
+				"name": "Redis - Connected Clients",
+				"queries": [
+					{
+						"query": "SELECT mean(\"clients\") AS \"clients\" FROM \"telegraf\".\"autogen\".\"redis\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT mean(\"clients\") AS \"clients\" FROM \"telegraf\".\"autogen\".\"redis\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/6/cells/ed8647cc-cf02-450b-891f-905cdaa60b01"
+				}
+			},
+			{
+				"i": "fbb93e6e-22e9-4734-999e-b017889528e7",
+				"x": 4,
+				"y": 0,
+				"w": 4,
+				"h": 4,
+				"name": "Redis - Blocked Clients",
+				"queries": [
+					{
+						"query": "SELECT mean(\"blocked_clients\") AS \"blocked_clients\" FROM \"telegraf\".\"autogen\".\"redis\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT mean(\"blocked_clients\") AS \"blocked_clients\" FROM \"telegraf\".\"autogen\".\"redis\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/6/cells/fbb93e6e-22e9-4734-999e-b017889528e7"
+				}
+			},
+			{
+				"i": "b87a1030-60ed-44f9-9877-554934c9af05",
+				"x": 8,
+				"y": 0,
+				"w": 4,
+				"h": 4,
+				"name": "Redis - CPU",
+				"queries": [
+					{
+						"query": "SELECT non_negative_derivative(max(\"used_cpu_user\")) AS \"used_cpu_per_second\" FROM \"telegraf\".\"autogen\".\"redis\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT non_negative_derivative(max(\"used_cpu_user\")) AS \"used_cpu_per_second\" FROM \"telegraf\".\"autogen\".\"redis\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "f4846cca-38fc-4549-a6aa-fc7b15ba3b39",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d5cebb0f-fe41-430b-8387-faed67677618",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "a34d15c6-2e9a-4aa8-af9c-c06d8e660166",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/6/cells/b87a1030-60ed-44f9-9877-554934c9af05"
+				}
+			},
+			{
+				"i": "a6ce8aef-8c06-4588-b000-07f94a571a24",
+				"x": 0,
+				"y": 4,
+				"w": 4,
+				"h": 4,
+				"name": "Redis - Memory",
+				"queries": [
+					{
+						"query": "SELECT non_negative_derivative(max(\"used_memory\")) AS \"used_memory_per_second\" FROM \"telegraf\".\"autogen\".\"redis\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:)",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT non_negative_derivative(max(\"used_memory\")) AS \"used_memory_per_second\" FROM \"telegraf\".\"autogen\".\"redis\" WHERE time > :dashboardTime: AND \"host\" = :host: GROUP BY time(:interval:)",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": false,
+					"sortBy": {
+						"internalName": "",
+						"displayName": "",
+						"visible": false
+					},
+					"wrapping": "",
+					"fixFirstColumn": false
+				},
+				"fieldOptions": [],
+				"timeFormat": "",
+				"decimalPlaces": {
+					"isEnforced": false,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/6/cells/a6ce8aef-8c06-4588-b000-07f94a571a24"
+				}
+			}
+		],
+		"templates": [
+			{
+				"tempVar": ":host:",
+				"values": [
+					{
+						"value": "test2",
+						"type": "tagValue",
+						"selected": true
+					}
+				],
+				"id": "96908f37-c1b6-4181-b670-d26c942af22c",
+				"type": "tagValues",
+				"label": "",
+				"query": {
+					"influxql": "SHOW TAG VALUES ON :database: FROM :measurement: WITH KEY=:tagKey:",
+					"db": "telegraf",
+					"measurement": "redis",
+					"tagKey": "host",
+					"fieldKey": ""
+				},
+				"sourceID": "dynamic",
+				"links": {
+					"self": "/chronograf/v1/dashboards/6/templates/96908f37-c1b6-4181-b670-d26c942af22c"
+				}
+			}
+		],
+		"name": "Redis",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/6",
+			"cells": "/chronograf/v1/dashboards/6/cells",
+			"templates": "/chronograf/v1/dashboards/6/templates"
+		}
+	}
+}

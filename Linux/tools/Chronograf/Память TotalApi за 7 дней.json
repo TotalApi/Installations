@@ -1,0 +1,492 @@
+{
+	"meta": {
+		"chronografVersion": "1.10.0",
+		"sources": {
+			"1": {
+				"name": "Influx DB",
+				"link": "/chronograf/v1/sources/1"
+			}
+		}
+	},
+	"dashboard": {
+		"id": "14",
+		"cells": [
+			{
+				"i": "85e7e6c3-4640-4435-9353-f967485c155b",
+				"x": 6,
+				"y": 0,
+				"w": 6,
+				"h": 3,
+				"name": "Укравтодор",
+				"queries": [
+					{
+						"query": "SELECT \"value\"/1024/1024 FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > now()-7d AND \"operation\"='PrivateMemorySize' AND \"module\"='!TotalApi.UAD'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\"/1024/1024 FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > now()-7d AND \"operation\"='PrivateMemorySize' AND \"module\"='!TotalApi.UAD'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							"1500"
+						],
+						"label": "Mb",
+						"prefix": "",
+						"suffix": " Mb",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9ec07aee-9ef0-4a0f-ba5e-ca997c02c30c",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "5a8d164c-cbdd-438e-b47e-bd6ed98014a4",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/14/cells/85e7e6c3-4640-4435-9353-f967485c155b"
+				}
+			},
+			{
+				"i": "45a22431-7ec3-4dbd-83b4-d77a8af7ca20",
+				"x": 6,
+				"y": 3,
+				"w": 6,
+				"h": 3,
+				"name": "Steko",
+				"queries": [
+					{
+						"query": "SELECT \"value\"/1024/1024 FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > now()-7d AND \"operation\"='PrivateMemorySize' AND \"module\"='!TotalApi.Steko'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\"/1024/1024 FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > now()-7d AND \"operation\"='PrivateMemorySize' AND \"module\"='!TotalApi.Steko'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							"1500"
+						],
+						"label": "Mb",
+						"prefix": "",
+						"suffix": " Mb",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9ec07aee-9ef0-4a0f-ba5e-ca997c02c30c",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "5a8d164c-cbdd-438e-b47e-bd6ed98014a4",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/14/cells/45a22431-7ec3-4dbd-83b4-d77a8af7ca20"
+				}
+			},
+			{
+				"i": "a581492e-6a34-4885-b15c-128bd60bbb9c",
+				"x": 0,
+				"y": 3,
+				"w": 6,
+				"h": 3,
+				"name": "Work",
+				"queries": [
+					{
+						"query": "SELECT \"value\"/1024/1024 FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > now()-7d AND \"operation\"='PrivateMemorySize' AND \"module\"='!TotalApi.Work'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\"/1024/1024 FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > now()-7d AND \"operation\"='PrivateMemorySize' AND \"module\"='!TotalApi.Work'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							"1500"
+						],
+						"label": "Mb",
+						"prefix": "",
+						"suffix": " Mb",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9ec07aee-9ef0-4a0f-ba5e-ca997c02c30c",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "5a8d164c-cbdd-438e-b47e-bd6ed98014a4",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/14/cells/a581492e-6a34-4885-b15c-128bd60bbb9c"
+				}
+			},
+			{
+				"i": "c2eeb386-02c3-46d3-9b6d-1cdf4616268a",
+				"x": 0,
+				"y": 0,
+				"w": 6,
+				"h": 3,
+				"name": "Гортранс",
+				"queries": [
+					{
+						"query": "SELECT \"value\"/1024/1024 FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > now()-7d AND \"operation\"='PrivateMemorySize' AND \"module\"='!TotalApi.GorTrans'",
+						"queryConfig": {
+							"database": "",
+							"measurement": "",
+							"retentionPolicy": "",
+							"fields": [],
+							"tags": {},
+							"groupBy": {
+								"time": "",
+								"tags": []
+							},
+							"areTagsAccepted": false,
+							"rawText": "SELECT \"value\"/1024/1024 FROM \"stat_db\".\"seven_days\".\"api_metrics\" WHERE time > now()-7d AND \"operation\"='PrivateMemorySize' AND \"module\"='!TotalApi.GorTrans'",
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							"1500"
+						],
+						"label": "Mb",
+						"prefix": "",
+						"suffix": " Mb",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-plus-single-stat",
+				"colors": [
+					{
+						"id": "base",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "9ec07aee-9ef0-4a0f-ba5e-ca997c02c30c",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "5a8d164c-cbdd-438e-b47e-bd6ed98014a4",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 0
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/14/cells/c2eeb386-02c3-46d3-9b6d-1cdf4616268a"
+				}
+			}
+		],
+		"templates": [],
+		"name": "Память TotalApi за 7 дней",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/14",
+			"cells": "/chronograf/v1/dashboards/14/cells",
+			"templates": "/chronograf/v1/dashboards/14/templates"
+		}
+	}
+}

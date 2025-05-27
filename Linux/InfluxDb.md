@@ -36,7 +36,6 @@ And then to install and start the InfluxDB service:
 
 [Фишки InfluxDb](http://docs.influxdata.com)
 ============================================
-
 Для доступа к админ консоли нужно подключится к контейнеру (если в Docker'е)
     
     sudo docker exec -i -t influxdb /bin/bash
@@ -48,8 +47,15 @@ And then to install and start the InfluxDB service:
 Просмотр протокола:
 
 	sudo journalctl -u influxdb.service > influxdb_all.log
-	sudo journalctl -u influxdb.service -f  > influxdb_live_tail.log
+
+Просмотр последних 100 записей:
+
 	sudo journalctl -u influxdb.service -n 100  > influxdb_last_100.log
+
+"Живая" запись протокола в файл:
+
+	sudo journalctl -u influxdb.service -f  > influxdb_live_tail.log
+
 	
 Чтобы сделать автоматический вывод протокола в файл необходимо скопировать файлы из каталога [tools/influxdb] в каталог `/etc/influxdb/tools` 
 и запустить файл:
@@ -59,7 +65,6 @@ And then to install and start the InfluxDB service:
 
 Включить UDP
 ------------
-
 В конфигурационном файле `/etc/influxdb/influxdb.conf` создать или раскомментировать следующие строки:
 
 	[[udp]]
@@ -71,16 +76,14 @@ And then to install and start the InfluxDB service:
 
 Запись протокола доступа по http (только чтение данных) в файл
 --------------------------------------------------------------
-
 В конфигурационном файле `/etc/influxdb/influxdb.conf` создать или раскомментировать следующие строки:
 
-	[[http]]
+	[http]
   		access-log-path = "/var/log/influxdb/access_http.log"
 
 
 Начальная настройка БД
 ----------------------
-
 Для доступа к админ консоли нужно запустить 
     
     influx
@@ -108,7 +111,6 @@ And then to install and start the InfluxDB service:
 
 [Fixing SHOW MEASUREMENTS bug](https://github.com/influxdata/influxdb/issues/4395)
 ----------------------------------------------------------------------------------
-
 Если сразу после установки `show measurements` возвращает пустое множество выполните в консоле Influx:
     
     use stat_db
@@ -124,8 +126,7 @@ And then to install and start the InfluxDB service:
     
 [Установка Chronograf на Ubuntu](https://influxdata.com/downloads/)
 ===================================================================
-
-Последняя поддерживаемая версия `Chronograf` для `Influx 1.x` - `1.10.6`
+Последняя поддерживаемая версия `Chronograf` для `Influx 1.x` - `1.10.7`
 
 `Chronograf` нужен для отображения данных о собранной статистике.
 
@@ -158,7 +159,6 @@ Add Chronograf to autorun programs in file `/etc/rc.local`.
 
 [Установка Kapacitor на Ubuntu](https://influxdata.com/downloads/)
 ==================================================================
-
 Последняя поддерживаемая версия `Kapacitor` для `Influx 1.x` - `1.7.6-1`
 
 `Kapacitor` позволяет настраивать реакции при наступлении определённых событий.
@@ -178,6 +178,12 @@ Ubuntu & Debian system install instructions
 
 если необходимо получать данные из удалённого сервера InfluxDb нужно поменять в этом файле строку
 
+
+
+Запустить и включить автозапуск
+-------------------------------
+
+    sudo systemctl enable --now kapacitor
 
 
 
@@ -214,10 +220,8 @@ Ubuntu & Debian system install instructions
 
 
 
-
 [Установка Telegraf на Ubuntu (старое)](https://influxdata.com/downloads/)
 =================================================================
-
 `Telegraf` собирает системную статистику об операционной системе.
 
 Ubuntu & Debian system install instructions
@@ -231,7 +235,6 @@ Ubuntu & Debian system install instructions
 
 Настройка Telegraf для отдельного сервера
 -----------------------------------------
-
 Configuration file is here `/etc/telegraf/telegraf.conf`.
 
 Создать новый конфиг (опционально):
@@ -241,6 +244,7 @@ Configuration file is here `/etc/telegraf/telegraf.conf`.
 
 Установить название сервера
 ---------------------------
+Это название будет являться названием измерения для возможности разделять данные, собранные с разных серверов.
 
 		[agent]
 			hostname = "{server_name}"
@@ -248,6 +252,7 @@ Configuration file is here `/etc/telegraf/telegraf.conf`.
 
 Установить адрес передачи в InfluxDB
 ------------------------------------
+По умолчанию эта опция неактивна, т.к. `Telegraf` может передавать данные в разные системы сбора статистики.
 
 		[[outputs.influxdb]]
 			urls = ["udp://stat.totalapi.io:4444"]  # только на удалённых серверах
@@ -260,5 +265,166 @@ Configuration file is here `/etc/telegraf/telegraf.conf`.
 		telegraf -debug             
 			
 
+Настройка плагинов Telegraf
+===========================
+По умолчанию в `Telegraf` включены только плагины, собирающие базовую системную информацию.
 
+Чтобы изменения вступили в силу - в конце перезапусти Telegraf:
+
+    sudo systemctl restart telegraf
+
+
+Ngnix
+-----
+В `/etc/telegraf/telegraf.conf` раскомментируй или добавь:
+
+    [[inputs.nginx]]
+        urls = ["http://127.0.0.1/nginx_status"]
+        # Можно не указывать
+        [inputs.nginx.tags]
+            host = "{server_name}"
+
+Добавь файл `/etc/nginx/sites-available/nginx.stat` с содержимым:
+
+    server {
+        server_name _;
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        location /nginx_status {
+            stub_status;
+            allow 127.0.0.1;
+            deny all;
+        }
+    }
+
+Активируй его и перезагрузи `nginx`:
+
+    sudo ln -s /etc/nginx/sites-available/nginx.stat /etc/nginx/sites-enabled/
+    sudo systemctl reload nginx
+
+Проверка доступности источника данных:
+
+    curl http://127.0.0.1/nginx_status
+
+Проверка работы плагина:
+
+    telegraf --input-filter=nginx --test
+
+Метрики, которые собираются:
+
+* `active`, `accepts`, `handled`, `requests`
+* `reading`, `writing`, `waiting`
+
+
+InfluxDb
+--------
+В `/etc/telegraf/telegraf.conf` раскомментируй или добавь:
+
+    [[inputs.influxdb]]
+        urls = ["http://localhost:8086/debug/vars"]
+        name_prefix = "influxdb_"
+        # Можно не указывать
+        [inputs.influxdb.tags]
+            host = "{server_name}"
+
+Проверка доступности источника данных:
+
+    curl http://localhost:8086/debug/vars | jq
+
+Проверка работы плагина:
+
+    telegraf --input-filter=influxdb --test
+    
+Метрики, которые собираются - это метрики с endpoints `/debug/vars``, включая:
+
+* `influxdb_httpd` — HTTP запросы
+* `influxdb_write` — запись данных
+* `influxdb_query` — статистика запросов
+* `influxdb_tsm1_*` — кэш, блокировки, WAL
+* `influxdb_runtime` — Go GC, allocs, goroutines и пр.
+
+Работает только с `InfluxDB 1.x`. Порт `8086` должен быть доступен. Включён `debug/vars` (включено по умолчанию).
+
+
+PostgreSQL
+----------
+В `/etc/telegraf/telegraf.conf` раскомментируй или добавь:
+
+    [[inputs.postgresql]]
+        address = "host=localhost user=postgres password=PASSWORD sslmode=disable"
+        # Можно указать конкретную БД (по умолчанию — собираются данные по всем)
+        databases = ["{db_name1}", "{db_name2}"]
+        # Можно не указывать
+        [inputs.postgresql.tags]
+            host = "{server_name}"
+    
+Проверка работы плагина:
+
+    telegraf --input-filter=postgresql --test
+
+Метрики, которые собираются:
+
+* `pg_stat_database` - общее число подключений, коммитов, ошибок и т.д.
+* `pg_stat_bgwriter` - фоновые записи, контрольные точки
+* `pg_stat_activity` - активные подключения
+* `pg_stat_user_tables` - счётчики операций по таблицам (если включено)
+
+
+Redis
+-----
+Плагин собирает метрики от Redis-сервера через команду `INFO`.
+
+В `/etc/telegraf/telegraf.conf` раскомментируй или добавь:
+
+    [[inputs.redis]]
+        servers = ["tcp://localhost:6379"]
+        # Если есть пароль:
+        # password = "your_password"        
+        
+        # Можно не указывать
+        [inputs.postgresql.tags]
+            host = "{server_name}"
+    
+Проверка работы плагина:
+
+    telegraf --input-filter=redis --test
+
+Метрики, которые собираются:
+
+* Общая статистика (`uptime`, `connected_clients`, `used_memory`, и т.д.)
+* Статистика команд (`cmdstat_*`)
+* Репликация (`role`, `connected_slaves`)
+* Персистенция (`rdb`, `aof`)
+* Сетевые метрики (`total_connections_received`, `total_commands_processed`)
+
+
+PingL
+----
+Плагин используется для проверки доступности и задержки (latency) до указанных хостов через ICMP (ping).
+    
+В `/etc/telegraf/telegraf.conf` раскомментируй или добавь:
+
+    [[inputs.ping]]
+        urls = ["8.8.8.8", "1.1.1.1"]
+        count = 1
+        ping_interval = 1.0
+        timeout = 2.0
+        method = "exec"  # или "native" (если поддерживается)
+
+💡 При использовании `native` нужен root (или capability `CAP_NET_RAW`).
+
+Проверка работы плагина:
+
+    telegraf --input-filter=ping --test
+
+Метрики, которые собираются:
+
+* `packets_transmitted`
+* `packets_received`
+* `percent_packet_loss`
+* `average_response_ms`
+* `maximum_response_ms`
+* `minimum_response_ms`
+* `standard_deviation_ms`
 
