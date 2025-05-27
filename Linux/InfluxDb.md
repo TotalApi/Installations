@@ -399,7 +399,7 @@ Redis
 * Сетевые метрики (`total_connections_received`, `total_commands_processed`)
 
 
-PingL
+Ping
 ----
 Плагин используется для проверки доступности и задержки (latency) до указанных хостов через ICMP (ping).
     
