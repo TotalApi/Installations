@@ -84,6 +84,10 @@ NAT через iptables
     sudo apt install iptables-persistent
     sudo netfilter-persistent save
 
+или
+
+    iptables-save > /etc/iptables/rules.v4
+
 
 Перезапуск службы
 -----------------
