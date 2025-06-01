@@ -73,15 +73,15 @@ NAT через iptables
 
     ip r | grep default
 
-Например: eth0 или ens3.
+Например: `eth0` или `ens3`.
 
-Заменив eth0 на нужный интерфейс выполни:
+Заменив `ens3` на нужный интерфейс, а `10.10.10.0/24` на подсеть VPN, выполни:
 
-    sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    sudo iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o ens3 -j MASQUERADE
 
 Чтобы сохранить:
 
-    sudo apt install iptables-persistent
+    sudo apt install iptables-persistent;
     sudo netfilter-persistent save
 
 или
