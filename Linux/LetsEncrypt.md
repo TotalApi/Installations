@@ -16,13 +16,22 @@
     sudo chmod -R 755 /etc/letsencrypt/{archive,live}
 
 
+Установка сертификата на указанные поддомены
+--------------------------------------------
+
+Требуется предварительно установленный `Ngnix`.
+
+    sudo certbot --nginx --cert-name test.totalapi.io -d test.totalapi.io -d m.test.totalapi.io
+
+
 Установка сертификата на все поддомены `*.totalapi.io`
 ------------------------------------------------------
 
 Требуется предварительно установленный `Ngnix`.
 
-    sudo certbot certonly --nginx   --preferred-challenges dns   -d totalapi.io   -d *.totalapi.io
+    sudo certbot certonly --nginx --preferred-challenges dns -d totalapi.io -d *.totalapi.io
 
+*ВНИМАНИЕ!!!* Этот метод НЕ поддерживает автопродление сертификата.
 
 
 
