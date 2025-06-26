@@ -14,22 +14,13 @@
 
 1. **Разрешить вход `root` через PAM (если требуется)**
 
-   - Отредактируйте файл `/etc/pam.d/cockpit`: закомментируйте строку:
+   - В файле `/etc/pam.d/cockpit` закомментируйте строку:
      
         auth requisite pam_succeed_if.so uid >= 1000
 
 
 2. **Разрешить `root`-подключения в конфигурации Cockpit**
-   - Откройте файл конфигурации Cockpit:
-     ```bash
-     sudo nano /etc/cockpit/cockpit.conf
-     ```
-   - Добавьте или измените параметр:
-     ```
-     [Session]
-     AllowRoot = true
-     ```
-   - Сохраните файл.
+   - В файле `/etc/cockpit/disallowed-users` уберите пользователя `root`.
 
 
 3. **Перезапустите Cockpit**
