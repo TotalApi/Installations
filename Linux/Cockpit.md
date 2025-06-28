@@ -46,4 +46,13 @@
     sudo netplan generate
     sudo netplan apply
 
+отключить службу ожидания сети, управляемой `systemd-networkd`:
+
+    sudo systemctl disable systemd-networkd-wait-online.service
+    sudo systemctl mask systemd-networkd-wait-online.service
+
+включить службу ожидания сети, управляемой `NetworkManager`:
+
+    sudo systemctl enable NetworkManager-wait-online.service
+    sudo systemctl start NetworkManager-wait-online.service
 
