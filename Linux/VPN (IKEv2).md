@@ -16,6 +16,7 @@
 
 Создайте ключ и сертификат для сервера
 --------------------------------------
+В данном примере используется домен сервера `scylla.totalapi.io`.
 
     sudo ipsec pki --gen --type rsa --size 4096 --outform pem > /etc/ipsec.d/private/server.key.pem
     
@@ -42,7 +43,8 @@
     conn ikev2-vpn
     
         left=%any
-        leftid=scylla.totalapi.io
+        # тут нужно указать домен сервера, который использовался при создании сертификата
+        leftid=scylla.totalapi.io  
         leftcert=server.cert.pem
         leftsendcert=always
         leftsubnet=0.0.0.0/0
@@ -50,7 +52,8 @@
         right=%any
         rightid=%any
         rightauth=eap-mschapv2
-        rightsourceip=10.10.10.0/24
+        # тут нужно указать диапазон IP-адресов, который будет использоваться при создании VPN-подключения
+        rightsourceip=192.168.100.0/24
         rightdns=8.8.8.8,8.8.4.4
         rightsendcert=never
     
@@ -75,10 +78,10 @@
 -----------------------------------------------------------------
 
     # /etc/ipsec.secrets
-    : RSA server.key.pem
+    : RSA "server.key.pem"
     your-username : EAP "your-password"
 
-Замените your-username и your-password на желаемые учетные данные.
+Замените `your-username` и `your-password` на желаемые учетные данные.
 
 
 Включение переадресации IP
@@ -100,12 +103,66 @@
     sudo ufw allow 4500/udp		comment 'NAT-T (IPsec)'
     sudo ufw allow 500/udp		comment 'IKE (IPsec)'
 
+Подключение к самому серверу через VPN возможно только по внутреннему IP-адресу и подсеть VPN должна быт добавлена в правила:
+
+    sudo ufw allow from 192.168.100.0/24  comment 'Allow VPN access'
+
+
+
+NAT через `iptables`
+--------------------
+
+Проверь имя интерфейса:
+
+    ip r | grep default
+
+Например: `eth0` или `ens3`.
+
+Заменив `ens3` на нужный интерфейс, а `192.168.100.0/24` на подсеть VPN, выполни:
+
+    sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o ens3 -j MASQUERADE
+
+Чтобы сохранить:
+
+    sudo apt install iptables-persistent;
+    sudo netfilter-persistent save
+
+или
+
+    iptables-save > /etc/iptables/rules.v4
+
+
+Альтернативная настройка NAT через UFW
+--------------------------------------
+
+В файле `/etc/ufw/before.rules` в секцию `*nat` после `:POSTROUTING ACCEPT [0:0]` и перед `COMMIT` добавьте правило маскарадинга:
+
+    -A POSTROUTING -s 192.168.100.0/24 -o ens3 -j MASQUERADE
+
+Указанный тут диапазон IP-адресов должен совпадать с тем, что указан в `/etc/ipsec.conf` в `rightsourceip`, 
+а название сетевого интерфейса (`ens3`) совпадать с названием, полученным при вызове `ip r | grep default`.
+
+Если такой секции нет - создайте её в самом начале файла. Секция в итоге должна выглядеть примерно так:
+
+    *nat
+    :POSTROUTING ACCEPT [0:0]
+    #
+    # Add rules for VPN (L2TP/IPsec)
+    -A POSTROUTING -s 192.168.100.0/24 -o ens3 -j MASQUERADE
+    # End VPN rules
+    COMMIT
+    
 
 После настройки перезапустите сервис
 ------------------------------------
 
-    sudo systemctl restart strongswan-starter
-    sudo systemctl enable strongswan-starter
+    sudo systemctl restart strongswan-starter && sudo systemctl enable strongswan-starter
+
+
+Просмотр логов для отладки
+--------------------------
+
+    sudo journalctl -u strongswan-starter -f
 
 
 Настройка клиента Windows 11

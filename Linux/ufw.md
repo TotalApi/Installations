@@ -20,6 +20,12 @@
     sudo ufw enable
 
 
+Перезагрузка UFW
+----------------
+
+    sudo ufw disable && sudo ufw --force enable
+
+
 Получение списка правил
 -----------------------
 
@@ -42,6 +48,7 @@
     sudo ufw allow from xxx.xxx.xxx.xxx   comment 'home computer'
 
     sudo ufw allow from 192.168.10.0/24   comment 'Allow Local access'
+    sudo ufw allow from 192.168.100.0/24  comment 'Allow VPN access'
 
     sudo ufw allow proto tcp from any to any port 8086 comment 'Allow infixdDB http access'
     sudo ufw allow proto udp from any to any port 4444  comment 'Allow infixdDB udp access'
@@ -57,4 +64,6 @@
     
 Вставка правил перед указанным
 ------------------------------
+
+    sudo ufw insert 5 allow from 192.168.10.100 to any port 80/tcp
 

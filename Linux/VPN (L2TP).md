@@ -66,8 +66,8 @@
     sudo sysctl -p
 
 
-NAT через iptables
-------------------
+NAT через `iptables`
+--------------------
 
 Проверь имя интерфейса:
 
@@ -75,9 +75,9 @@ NAT через iptables
 
 Например: `eth0` или `ens3`.
 
-Заменив `ens3` на нужный интерфейс, а `10.10.10.0/24` на подсеть VPN, выполни:
+Заменив `ens3` на нужный интерфейс, а `192.168.100.0/24` на подсеть VPN, выполни:
 
-    sudo iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o ens3 -j MASQUERADE
+    sudo iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o ens3 -j MASQUERADE
 
 Чтобы сохранить:
 
@@ -87,6 +87,24 @@ NAT через iptables
 или
 
     iptables-save > /etc/iptables/rules.v4
+
+
+Альтернативная настройка NAT через UFW
+--------------------------------------
+
+В файле `/etc/ufw/before.rules` в секцию `*nat` после `:POSTROUTING ACCEPT [0:0]` и перед `COMMIT` добавьте правило маскарадинга:
+
+    -A POSTROUTING -s 192.168.100.0/24 -o ens3 -j MASQUERADE
+
+Если такой секции нет - создайте её в самом начале файла. Секция в итоге должна выглядеть примерно так:
+
+    *nat
+    :POSTROUTING ACCEPT [0:0]
+    #
+    # Add rules for VPN (L2TP/IPsec)
+    -A POSTROUTING -s 192.168.100.0/24 -o ens3 -j MASQUERADE
+    # End VPN rules
+    COMMIT
 
 
 Перезапуск службы
@@ -118,11 +136,16 @@ NAT через iptables
 
 следующие строки:
 
+    #
+    # Add rules for VPN (L2TP/IPsec)
+    #
     # DNS localhost
     -A ufw-before-input -i lo -p udp --dport 53 -j ACCEPT
 
     # Allow ESP (IPsec)
     -A ufw-before-input -p esp -j ACCEPT
+    #
+    # End VPN rules
 
 Примени изменения:
 
