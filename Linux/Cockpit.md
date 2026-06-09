@@ -41,10 +41,13 @@
     network:
         renderer: NetworkManager
 
-после чего перезагрузить `netplan`:
+после чего перезагрузить `netplan` и `NetworkManager`:
 
     sudo netplan generate
     sudo netplan apply
+    sudo systemctl restart NetworkManager
+
+необязательно (только если не помогли предыдущие команды):
 
 отключить службу ожидания сети, управляемой `systemd-networkd`:
 
