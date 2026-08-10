@@ -1,0 +1,121 @@
+﻿# можно оставить без изменений, если Web-приложение запущено на этом же хосте и внешнего доступа с сервисам TotalApi не требуется
+serviceHost: http://localhost:1202
+
+# идентификатор службы
+appId: '!TotalApi.XXX'
+appTitle: TotalApi XXX Server
+
+# укажите порт, если используется мониторинг состояния
+AppMonitorServer:
+  HttpPort: 0
+
+# Параметры подключения к телематической БД 
+ConnectionStrings:
+  Cassandra.TelematicsDb: Contact Points=[host];Default Keyspace=telematics;PoolSize=500;RetryReadCount=5;WriteDataThreads=100;QueryTimeoutMs=10000
+
+# Параметры протоколирования
+totalapi.log:
+  #disabled: true
+  async: false
+  separator: 	
+  files:
+  - { "file": ".\\logs\\log.txt", "console": true, "level": 255, "persistent": false, "categories":["-DevicePlugin.*", "-LegacyDevicePlugins"]  }
+  - { "file": ".\\logs\\log_error.txt", "persistent": true, "append": true, "level": 7, "categories":["-DevicePlugin.*", "-LegacyDevicePlugins"] }
+  - { "file": ".\\logs\\log_debug.txt", "level": 20, "categories":["-DevicePlugin.*", "-EventManager", "-Sensors", "-Billing", "-Debug"] }
+  - { "file": ".\\logs_device\\log.txt", "level": 255, "categories":["DevicePlugin.*"] }
+  - { "file": ".\\logs_device\\log_error.txt", "persistent": false, "append": false, "level": 7, "categories":["DevicePlugin.*"] }
+
+  #- { "file": ".\\logs_device\\3S.txt", "level": 16, "persistent": false, "append": false, "categories":["DevicePlugin.3S*"] },
+  #- { "file": ".\\logs_device\\Teltonika.txt", "level": 16, "persistent": false, "append": true, "categories":["DevicePlugin.Teltonika*"] }
+  #- { "file": ".\\logs_device\\Wialon.txt", "level": 255, "persistent": false, "append": false, "categories":["DevicePlugin.Wialon*"] }
+  #- { "file": ".\\logs_device\\Native.txt", "level": 16, "persistent": false, "append": false, "categories":["DevicePlugin.Native*"] }
+  #- { "file": ".\\logs_device\\Bson.txt", "level": 16, "persistent": false, "append": false, "categories":["DevicePlugin.Bson*"] }
+
+# Параметры модуля статистики
+Staticstics:
+  IsDisabled: true
+  WriteQueueSize: 1000
+
+# Параметры подключения к БД статистики
+InfluxDb:
+  IsDisabled: false
+  Url: http://[host]:8086:4444
+  DbName: stat_db
+  RetentionPolicy: seven_days
+  User: root
+  Password: P@ssw0rd
+
+# Сетевые параметры
+NetworkSettings:
+  # Список разрешённых IP-адресов.
+  # Если не задано разрешены ВСЕ адреса, за исключением адресов, перечисленных в `BlackIPs`.
+  # Поддерживаются маски вида 145.15.67.* и регулярные выражения вида /123\.222\.333\.(.*)/
+  WhiteIPs:
+
+  # Список запрещённых IP-адресов.
+  # Если задано, применяется после проверки `WhiteIPs`.
+  # Поддерживаются маски вида 145.15.67.* и регулярные выражения вида /123\.222\.333\.(.*)/
+  BlackIPs: []
+
+  # Количество потоков, обрабатывающих поступающие запросы по TCP и UDP-протоколам, а также по NamedPipe-каналам.
+  # Для каждого из протоколов создаётся отдельная очередь. 
+  # Если меньше или равно 0 - все запросы выполняются параллельно без использования очереди.
+  # Может быть перекрыто в настройках отдельного слушателя.
+  # Не поддерживает горячее изменение.
+  # По умолчанию: 0
+  #ConcurrencyLevel: 32
+
+  # Время жизни подключения без обращения к нему.
+  KeepAliveConnectionTime: 0:01 # 0:10
+
+  # Максимальное кол-во активных открытых входящих TCP-подключений для приёма данных с устройств слежения.
+  # Если меньше или равно нулю - ограничения нет.
+  TcpIncomingMaxConnections: 0 # 0
+
+  # Минимальное время, которое выделяется для входящего подключения для осуществления обмена данными.
+  # Если в течение этого времени, не было произведено обмена данными и если кол-во входящих подключений достигло максимума, данное подключение будет закрыто. (1)
+  # Если меньше или равно нулю - ограничения нет.
+  # (Применимо только при установленном значении TcpIncomingMaxConnections)
+  TcpIncomingMaxInactiveTime: 00:05 # 00:05
+
+  # Максимальное время жизни одного подключения, которое выделяется для входящего подключения при осуществлении обмена данными.
+  # Если подключение активно дольше указанного параметра и если кол-во входящих подключений достигло максимума, данное подключение может быть закрыто. (2)
+  # Если меньше или равно нулю - ограничения нет.
+  # (Применимо только при установленном значении TcpIncomingMaxConnections)
+  TcpIncomingMaxConnectionTime: 00:10  # 00:10
+
+  # Максимальное время, которое выделяется для входящего подключения для авторизации (время между первым и вторым пакетом).
+  # По истечении этого времени, если кол-во входящих подключений достигло максимума, данное подключение может быть закрыто. (3)
+  # Если меньше или равно нулю - ограничения нет.
+  # (Применимо только при установленном значении TcpIncomingMaxConnections)
+  TcpIncomingMaxAuthTime: 00:04 # 00:04
+
+  # Время блокировки принудительно закрытых соединений.
+  # Соединения могут быть установлены только по истечении этого времени, если кол-во входящих подключений достигло максимума.
+  # Если меньше или равно нулю - ограничения нет.
+  # (Применимо только при установленном значении TcpIncomingMaxConnections)
+  TcpIncomingBlockTime: 00:02 # 00:02
+
+
+# Параметры модуля телематики
+Telematics:
+  DefaultDeviceTtlDays: 300     # Время жизни координат в днях по умолчанию (по умолчанию `1`).
+  DefaultSensorDataTtlDays: 50  # Время жизни данных сенсоров в днях по умолчанию (по умолчанию `1`).
+  Cache:
+    WarmUpDevices: false        # прогревать кеш УС и статусов УС при старте (по умолчанию `false`)
+    WarmUpSensors: false        # прогревать кеш сенсоров и статусов сенсоров при старте (кеш сенсоров прогревается только если прогревается кеш УС) (по умолчанию `false`)
+    SlidingExpirationMin:       # null - отключить очистку кеша (по умолчанию `10`)
+    AbsoluteExpirationMin:      # null - отключить очистку кеша (по умолчанию `null`)
+
+  # Максимальный размер пакета для записи данных координат и сенсоров. По умолчанию - 0 (не ограничен).    
+  BatchSize: 0
+
+  # Данные координат и сенсоров старше указанного времени будут проигнорированы,
+  # (используется только в случае отправки больших пакетов архивных данных - эти данные будут приняты, но не записаны в БД)
+  SkipOldDataPeriodHours: 24
+
+  # Стратегия выдачи сессий для работы:
+  #  0 - для работы с Repository выделяется сессия из пула, для записи координат и состояний используется единая сессия записи, для чтения данных кеша используется единая сессия чтения (не реализовано)
+  #  1 - для всех операций используются сессии из пула (старый вариант)
+  #  2 - для работы с Repository выделяется единая сессия репозитория из пула, для записи координат и состояний используется единая сессия записи, для чтения данных кеша используется единая сессия чтения (не реализовано)
+  GetSessionStrategy: 2

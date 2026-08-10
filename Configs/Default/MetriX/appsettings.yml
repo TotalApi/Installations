@@ -1,0 +1,146 @@
+﻿serverHost: http://localhost:1202 # адрес подключения к сервисам TotalApi
+apiKey: '********'                # ApiKey для работы с сервисами TotalApi
+appId: Metrix.Web                 # Идентификатор приложения
+
+webHost: https://[web-host]       # Ссылка на Web-приложение (используется в некоторых отчётах, для формирования ссылок на карту) 
+
+# Строка подключения к БД приложения
+ConnectionStrings:
+  '@Default': MSSQL
+  ApplicationDb.MSSQL: data source=(local);initial catalog=Metrix.Db;Integrated Security=SSPI;App=Metrix.Web
+
+# Настройки CORS
+Cors:
+  Origins: '*'
+
+# Настройки уровня протоколирования
+Logging:
+  LogLevel:
+    Default: Debug
+    System: Information
+    Microsoft: Warning
+    ApiController: Error
+    Microsoft.AspNetCore: Warning
+    Microsoft.AspNetCore.Hosting.Diagnostics: None
+
+# Параметры протоколирования
+totalapi.log:
+  async: true
+  files:
+  - { "file": ".\\logs\\MetrixFleet.log", "level": 8 }
+  - { "file": ".\\logs\\MetrixFleet_error.log", "level": 7, "append": true }
+#  - { "file": ".\\logs\\MetrixFleet_debug.log", "level": 255, "append": false }
+
+Staticstics:
+  IsDisabled: true
+  WriteQueueSize: 1000
+
+InfluxDb:
+  IsDisabled: false
+  Url: http://[host]:8086:4444
+  DbName: stat_db
+  RetentionPolicy: seven_days
+  User: root
+  Password: P@ssw0rd
+
+# Параметры подключения к SMTP-серверу для рассылки уведомлений и результатов построения отчётов
+smtp:
+  disabled: true
+  host: [smtp_server]
+  port: [smtp_port]
+  enableSSL: false
+  userName: info@totalapi.io
+  password: [passord]
+  timeout: 5000
+  from: Metrix<info@totalapi.io>
+
+# Настройки Telegram-бота по умолчанию для рассылки уведомлений и результатов построения отчётов
+telegram:
+  token: '[token]'             # токен бота, администратора Telegram-канала в который отправляются сообщения 
+  resolverBotToken: '[token]'  # Токен доступа @ResolverBot'а (необходим для хоста @ResolverBot'а)
+
+# Настройки карты
+$appSettings:
+    # Кешировать GET-запросы клиента
+    cacheGetRequests: true
+
+    # Параметры карты по умолчанию
+    mapDefaults:
+        # Если значение установлено и больше нуля, то для УС дата активности которых была более указанного кол-ва часов назад будет установлено значение
+        # датчиков FlagGsp и FlagGsm в неопределённое или отрицательное значение.
+        #virtualGpsFlagHours: 24
+
+        #  Если равно `true` и virtualGpsFlagHours > 0 используется полная виртуализация датчиков FlagGsp и FlagGsm - реальные данные игнорируются.
+        #  Если не установлено или равно `false` используется частичная виртуализация датчиков FlagGsp и FlagGsm - реальные данные игнорируются, только если они старые.
+        #virtualGpsFlag: true
+
+        # период принудительного обновления состояния видимых объектов мониторинга на карте. 0 - не обновлять
+        forcedUpdatePeriodSec: 60 
+
+        apiKey:
+            osm: 
+            visicom: '[API_KEY]'
+            google:
+
+        # Кривой Рог
+        center:
+            lat: 47.907325
+            lng: 33.372344
+
+            # страна в которой будут искаться адреса (ua/ru/en)
+            $country: ua                                    
+
+            # прямоугольна область, внутри которой будут искаться адреса (LngTopLeft,LatTopLeft,LngBottomRight,LatBottomRight)
+            $viewBox: 32.959516,47.456514, 34.238872,48.31915 
+
+            # WKT-геометрия, внутри которой следует производить поиск адресов. Для тех сервисов, которые поддерживают это (например, Visicom).
+            $searchGeometry:
+
+            # Название и/или идентификатор населённого пункта, в котором производится поиск адреса (если провайдер адресов это позволяет)
+            # если указано - при поиске будут отображаться только адреса в этом населённом пункте (для ua/ru/en)
+            # или идентификатор соответствует идентификатору населённого пункта для указанного провайдера (visicom/osm/google)
+            $searchSettlement:
+                visicom: STL1NLX38 # идентификатор населённого пункта visicom
+                ua: Кривий Ріг     # наименование населённого пункта ua
+                ru: Кривой Рог     # наименование населённого пункта ru
+                en: Kryvyi Rih     # наименование населённого пункта en
+
+        zoom:
+            initial: 11      # Какой мастаб у карты при позиционировании
+            detailTitle: 14  # При каком масштабе показывать название объекта мониторинга на карте
+            detailZone: 16   # При каком масштабе показывать название зон на карте
+
+        # 1_Visicom, 2_Osm, 3_GoogleStreet, 4_GoogleHybrid
+        defaultMap: 1_Visicom
+
+        # Visicom, Nominatim
+        defaultAddressService: Visicom
+
+        tile: {
+            "1_Visicom": {
+                "$name": "Visicom",
+                "$addressService": "Visicom",
+                "tile": "//tms{s}.visicom.ua/2.0.0/planet3/base_{visicom_lang}/{z}/{x}/{y}.png?key=15203883c7356ba1d5c3f99fa3866d1c",
+                "maxZoom": 19,
+                "tms": true,
+                "subdomains": "0123"
+            },
+            "2_Osm": {
+                "$name": "Open Street Map",
+                "$addressService": "Nominatim",
+                "tile": "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                "maxZoom": 19
+            },
+            "4_GoogleStreet": {
+                "$name": "Google (street)",
+                "tile": "//{s}.google.com/vt/lyrs=m&hl={visicom_lang}&x={x}&y={y}&z={z}",
+                "maxZoom": 20,
+                "subdomains": [ "mt0", "mt1", "mt2", "mt3" ]
+            },
+            "5_GoogleHybrid": {
+                "$name": "Google (hybrid)",
+                "tile": "//{s}.google.com/vt/lyrs=s,h&hl={visicom_lang}&x={x}&y={y}&z={z}",
+                "maxZoom": 20,
+                "subdomains": [ "mt0", "mt1", "mt2", "mt3" ]
+            }
+        }

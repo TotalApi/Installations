@@ -12,29 +12,36 @@
 
 2. На операционной системе Windows установить необходимые инструменты, указанные [на этой странице](Redist/Readme.md).
 
-3. Сервис работы с телематическими данными **TotalApi** (установка на **Windows**)
-   - Распаковать содержимое [архива](https://github.com/TotalApi/Installations/raw/main/Redist/totalapi-win-x64-latest.zip) в любую папку;
+3. Сервис работы с телематическими данными **TotalApi** 
+   - Распаковать содержимое архива [для Ubuntu](https://github.com/TotalApi/Installations/raw/main/Redist/totalapi-linux-x64-latest.zip) или [для Windows](https://github.com/TotalApi/Installations/raw/main/Redist/totalapi-win-x64-latest.zip) в любую папку;
    - Скопировать образцы [конфигурационных файлов](Configs/Default/TotalApi/README.md) в папку **TotalApi**;
    - Настроить сервис в [конфигурационном файле](Configs/TotalApi_Config.md);
    - Настроить [модули приёма координат](Configs/TotalApi_DevicePlugins.md);
-   - Установить сервис как службу Windows, выполнив команду в командной строке `TotalApi.Server.Host.exe /i`  с правами администратора.
+   - Выполнить установку сервиса, выполнив команду в командной строке `TotalApi.Server.Host -i` с правами администратора.
 
-4. База данных **MSSQL Server** для Web-приложения **Metrix**
-   - установить БД **MSSQL Server 2012 R2 x64** или выше. (Использование других редакций теоретически возможно, но не проверялось);
-   - (опционально) установить **[SQL Server Management Studio](https://aka.ms/ssmsfullsetup)**.
- 
-5. База данных **PostreSQL** для Web-приложения **Metrix**
+4. База данных **PostreSQL** для Web-приложения **Metrix**
    - установить БД **[PostreSQL v17.5](https://www.postgresql.org/download/)** или выше. (Использование других редакций теоретически возможно, но не проверялось);
    - (опционально) установить **[PgAdmin v4](https://www.pgadmin.org/download/)**.
 
-5. Web-приложение **Metrix** (установка на **Windows**)
+5. База данных **MSSQL Server** для Web-приложения **Metrix**
+   - установить БД **MSSQL Server 2012 R2 x64** или выше. (Использование других редакций теоретически возможно, но не проверялось);
+   - (опционально) установить **[SQL Server Management Studio](https://aka.ms/ssmsfullsetup)**.
+ 
+6. Web-приложение **Metrix** (установка на **Ubuntu**)
+   - Распаковать содержимое [архива](https://github.com/TotalApi/Installations/raw/main/Redist/MetrixWeb-win-x64-latest.zip) в любую папку;
+   - Скопировать образцы [конфигурационных файлов](https://github.com/TotalApi/Installations/raw/main/Configs/Default/MetriX) в папку **Metrix**;
+   - Настроить сервис в [конфигурационном файле](Configs/Metrix_Config.md);
+   - Выполнить установку сервиса, выполнив команду в командной строке `Sam.Web -i` с правами администратора.
+   - Настроить реверсивный прокси (например, `nginx`) для внешнего доступа к web-приложению.
+   - Настрить `certbot` для получения и обновления SSL-сертификатов для web-приложения.
+
+7. Web-приложение **Metrix** (установка на **Windows**)
    - Установить на сервере IIS 7+ (при установке обязательно выбрать опцию поддержки Web-socket);
    - Для автоматического старта приложения выполнить рекомендации, описанные [здесь](https://www.taithienbo.com/how-to-auto-start-and-keep-an-asp-net-core-web-application-and-keep-it-running-on-iis/) и [здесь](https://docs.hangfire.io/en/latest/deployment-to-production/making-aspnet-app-always-running.html);
    - Распаковать содержимое [архива](https://github.com/TotalApi/Installations/raw/main/Redist/MetrixWeb-win-x64-latest.zip) в любую папку;
    - Скопировать образцы [конфигурационных файлов](https://github.com/TotalApi/Installations/raw/main/Configs/Default/MetriX) в папку **Metrix**;
    - Настроить сервис в [конфигурационном файле](Configs/Metrix_Config.md);
    - Создать в IIS Web-приложение, указав папку **Metrix** в качестве корневой; 
-
 
 [Решение проблем при нештатных ситуациях работы программного комплекса](TroubleShooting.md)
 -------------------------------------------------------------------------------------------
